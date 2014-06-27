@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<!-- This file is part of the sale_payment module for Tryton.
+The COPYRIGHT file at the top level of this repository contains the full
+copyright notices and license terms. -->
+<tryton>
+    <data>
+
+        <record model="ir.action.act_window" id="act_sale_statement_form">
+            <field name="name">Statements</field>
+            <field name="res_model">account.statement</field>
+            <field name="domain">[('users', '=', Eval('_user'))]</field>
+        </record>
+        <record model="ir.action.act_window.view" id="act_sale_statement_form_view1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="account_statement.statement_view_tree"/>
+            <field name="act_window" ref="act_sale_statement_form"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_sale_statement_form_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="account_statement.statement_view_form"/>
+            <field name="act_window" ref="act_sale_statement_form"/>
+        </record>
+        <record model="ir.action.act_window.domain"
+            id="act_sale_statement_form_domain_draft">
+            <field name="name">Draft</field>
+            <field name="sequence" eval="10"/>
+            <field name="domain">[('state', '=', 'draft')]</field>
+            <field name="act_window" ref="act_sale_statement_form"/>
+        </record>
+        <record model="ir.action.act_window.domain"
+            id="act_sale_statement_form_domain_validated">
+            <field name="name">Validated</field>
+            <field name="sequence" eval="20"/>
+            <field name="domain">[('state', '=', 'validated')]</field>
+            <field name="act_window" ref="act_sale_statement_form"/>
+        </record>
+        <record model="ir.action.act_window.domain"
+            id="act_sale_statement_form_domain_posted">
+            <field name="name">Posted</field>
+            <field name="sequence" eval="30"/>
+            <field name="domain">[('state', '=', 'posted')]</field>
+            <field name="act_window" ref="act_sale_statement_form"/>
+        </record>
+        <record model="ir.action.act_window.domain"
+            id="act_sale_statement_form_domain_all">
+            <field name="name">All</field>
+            <field name="sequence" eval="9999"/>
+            <field name="domain"></field>
+            <field name="act_window" ref="act_sale_statement_form"/>
+        </record>
+
+        <menuitem name="Statements" parent="sale.menu_sale"
+            action="act_sale_statement_form"
+            id="menu_sale_statement" sequence="70"/>
+
+        <record model="ir.ui.view" id="open_statement_start">
+            <field name="model">open.statement.start</field>
+            <field name="type">form</field>
+            <field name="name">open_statement_start_form</field>
+        </record>
+        <record model="ir.ui.view" id="open_statement_done">
+            <field name="model">open.statement.done</field>
+            <field name="type">form</field>
+            <field name="name">open_statement_done_form</field>
+        </record>
+        <record model="ir.action.wizard" id="wizard_open_statement">
+            <field name="name">Open Statements</field>
+            <field name="wiz_name">open.statement</field>
+        </record>
+        <menuitem parent="menu_sale_statement"
+            action="wizard_open_statement" id="menu_open_statement"/>
+        <record model="ir.ui.menu-res.group" id="menu_open_statement_group">
+            <field name="menu" ref="menu_open_statement"/>
+            <field name="group" ref="account_statement.group_statement"/>
+        </record>
+
+        <record model="ir.ui.view" id="close_statement_start">
+            <field name="model">close.statement.start</field>
+            <field name="type">form</field>
+            <field name="name">close_statement_start_form</field>
+        </record>
+        <record model="ir.ui.view" id="close_statement_done">
+            <field name="model">close.statement.done</field>
+            <field name="type">form</field>
+            <field name="name">close_statement_done_form</field>
+        </record>
+        <record model="ir.action.wizard" id="wizard_close_statement">
+            <field name="name">Close Statements</field>
+            <field name="wiz_name">close.statement</field>
+        </record>
+        <menuitem parent="menu_sale_statement"
+            action="wizard_close_statement" id="menu_close_statement"/>
+        <record model="ir.ui.menu-res.group" id="menu_close_statement_group">
+            <field name="menu" ref="menu_close_statement"/>
+            <field name="group" ref="account_statement.group_statement"/>
+        </record>
+
+        <record model="ir.model.access" id="access_sale_statement">
+            <field name="model" search="[('model', '=', 'account.statement')]"/>
+            <field name="group" ref="sale.group_sale"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_sale_statement_line">
+            <field name="model" search="[('model', '=', 'account.statement.line')]"/>
+            <field name="group" ref="sale.group_sale"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_sale_statement_admin">
+            <field name="model" search="[('model', '=', 'account.statement')]"/>
+            <field name="group" ref="sale.group_sale_admin"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_sale_statement_line_admin">
+            <field name="model" search="[('model', '=', 'account.statement.line')]"/>
+            <field name="group" ref="sale.group_sale_admin"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="access_statement_account_move">
+            <field name="model" search="[('model', '=', 'account.move')]"/>
+            <field name="group" ref="account_statement.group_statement"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_statement_account_move_line">
+            <field name="model" search="[('model', '=', 'account.move.line')]"/>
+            <field name="group" ref="account_statement.group_statement"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+    </data>
+</tryton>
