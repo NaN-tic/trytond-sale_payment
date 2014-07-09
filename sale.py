@@ -5,7 +5,7 @@ from decimal import Decimal
 
 from trytond.model import ModelView, fields
 from trytond.pool import PoolMeta, Pool
-from trytond.pyson import Eval
+from trytond.pyson import Bool, Eval, Not
 from trytond.transaction import Transaction
 from trytond.wizard import Wizard, StateView, StateTransition, Button
 
@@ -28,6 +28,7 @@ class Sale:
         cls._buttons.update({
                 'wizard_sale_payment': {
                     'invisible': Eval('state') == 'done',
+                    'readonly': Not(Bool(Eval('lines'))),
                     },
                 })
 
