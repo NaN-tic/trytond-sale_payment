@@ -142,16 +142,17 @@ class WizardSalePayment(Wizard):
         if not sale.reference:
             Sale.set_reference([sale])
 
-        payment = StatementLine(
-            statement=statements[0].id,
-            date=Date.today(),
-            amount=form.payment_amount,
-            party=sale.party.id,
-            account=sale.party.account_receivable.id,
-            description=sale.reference,
-            sale=active_id
-            )
-        payment.save()
+        if form.payment_amount:
+            payment = StatementLine(
+                statement=statements[0].id,
+                date=Date.today(),
+                amount=form.payment_amount,
+                party=sale.party.id,
+                account=sale.party.account_receivable.id,
+                description=sale.reference,
+                sale=active_id
+                )
+            payment.save()
 
         if sale.total_amount != sale.paid_amount:
             return 'start'
