@@ -1,3 +1,5 @@
+#:before:sale/sale:section:configuracion#
+
 =============
 Pago de venta
 =============
