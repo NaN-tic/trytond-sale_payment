@@ -25,4 +25,11 @@ copyright notices and license terms. -->
             <field name="residual_amount"/>
         </page>
     </xpath>
+
+    <xpath
+        expr="/form/notebook/page[@id='other']/field[@name='shop']"
+        position="after">
+        <label name="sale_device"/>
+        <field name="sale_device"/>
+    </xpath>
 </data>

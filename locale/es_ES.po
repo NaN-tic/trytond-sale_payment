@@ -235,6 +235,10 @@ msgctxt "field:sale.sale,residual_amount:"
 msgid "Residual Amount"
 msgstr "Pendiente"
 
+msgctxt "field:sale.sale,sale_device:"
+msgid "Sale Device"
+msgstr "Terminal de venta"
+
 msgctxt "field:sale.sale,self_pick_up:"
 msgid "Self Pick Up"
 msgstr "Autorecogida"
@@ -267,33 +271,9 @@ msgctxt "field:sale_pos.add_product_form,id:"
 msgid "ID"
 msgstr "ID"
 
-msgctxt "field:sale_pos.add_product_form,product:"
-msgid "Product"
-msgstr "Producto"
-
-msgctxt "field:sale_pos.add_product_form,product_uom_category:"
-msgid "Product Uom Category"
-msgstr "Categoría UdM del producto"
-
-msgctxt "field:sale_pos.add_product_form,quantity:"
-msgid "Quantity"
-msgstr "Cantidad"
-
 msgctxt "field:sale_pos.add_product_form,sale:"
 msgid "Sale"
 msgstr "Venta"
-
-msgctxt "field:sale_pos.add_product_form,unit:"
-msgid "Unit"
-msgstr "Unidad"
-
-msgctxt "field:sale_pos.add_product_form,unit_digits:"
-msgid "Unit Digits"
-msgstr "Dígitos unidad"
-
-msgctxt "field:sale_pos.add_product_form,unit_price:"
-msgid "Unit price"
-msgstr "Precio unidad"
 
 msgctxt "help:sale.sale,self_pick_up:"
 msgid ""

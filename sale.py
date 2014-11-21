@@ -10,7 +10,9 @@ from trytond.transaction import Transaction
 from trytond.wizard import Wizard, StateView, StateTransition, Button
 
 
-__all__ = ['Sale', 'SalePaymentForm', 'WizardSalePayment', 'WizardSaleReconcile']
+__all__ = ['Sale', 'SalePaymentForm', 'WizardSalePayment',
+    'WizardSaleReconcile']
+
 __metaclass__ = PoolMeta
 
 
@@ -21,6 +23,10 @@ class Sale:
         'get_paid_amount')
     residual_amount = fields.Function(fields.Numeric('Residual Amount',
             readonly=True), 'get_residual_amount')
+    sale_device = fields.Many2One('sale.device', 'Sale Device',
+            domain=[('shop', '=', Eval('shop'))],
+            depends=['shop']
+    )
 
     @classmethod
     def __setup__(cls):
@@ -31,6 +37,12 @@ class Sale:
                     'readonly': Not(Bool(Eval('lines'))),
                     },
                 })
+
+    @staticmethod
+    def default_sale_device():
+        User = Pool().get('res.user')
+        user = User(Transaction().user)
+        return user.sale_device or None
 
     @classmethod
     def get_paid_amount(cls, sales, names):
@@ -109,12 +121,13 @@ class WizardSalePayment(Wizard):
         User = pool.get('res.user')
         sale = Sale(Transaction().context['active_id'])
         user = User(Transaction().user)
-        if user.id != 0 and not user.sale_device:
+        sale_device = sale.sale_device or user.sale_device or False
+        if user.id != 0 and not sale_device:
             self.raise_user_error('not_sale_device')
         return {
-            'journal': user.sale_device.journal.id
-                if user.sale_device.journal else None,
-            'journals': [j.id for j in user.sale_device.journals],
+            'journal': sale_device.journal.id
+                if sale_device.journal else None,
+            'journals': [j.id for j in sale_device.journals],
             'payment_amount': sale.total_amount - sale.paid_amount
                 if sale.paid_amount else sale.total_amount,
             'currency_digits': sale.currency_digits,

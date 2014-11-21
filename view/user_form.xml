@@ -7,6 +7,6 @@ copyright notices and license terms. -->
         expr="/form/notebook/page[@id=&quot;preferences&quot;]/field[@name=&quot;shop&quot;]"
         position="after">
         <label name="sale_device"/>
-        <field name="sale_device" widget="selection"/>
+        <field name="sale_device"/>
     </xpath>
 </data>
