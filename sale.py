@@ -42,7 +42,7 @@ class Sale:
     def default_sale_device():
         User = Pool().get('res.user')
         user = User(Transaction().user)
-        return user.sale_device.id or None
+        return user.sale_device and user.sale_device.id or None
 
     @classmethod
     def get_paid_amount(cls, sales, names):
