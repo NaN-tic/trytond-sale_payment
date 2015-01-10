@@ -180,6 +180,7 @@ class OpenStatement(Wizard):
             for journal in device.journals:
                 if journal not in journals_of_draft_statements:
                     values = {
+                        'name': '%s - %s' % (device.rec_name, journal.rec_name),
                         'journal': journal.id,
                         'company': user.company.id,
                         'start_balance': start_balances.get(journal.id,
