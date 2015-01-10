@@ -36,7 +36,7 @@ msgstr "L'usuari %s no té cap terminal assignat encara.\n"
 
 msgctxt "error:res.user:"
 msgid "You can not have two users with the same login!"
-msgstr "No podeu tenir dos usuaris amb el mateix identificador d'entrada!"
+msgstr "No podeu tenir dos usuaris amb el mateix identificador d'entrada."
 
 msgctxt "error:sale.payment:"
 msgid "A customer invoice/refund from sale device has not been created."
@@ -53,7 +53,7 @@ msgstr "No heu definit un terminal de venda per al vostre usuari."
 
 msgctxt "error:sale.sale:"
 msgid "Go to user preferences and select a shop (\"%s\")"
-msgstr "Selecciona una botiga en les seves preferencies (\"%s\")"
+msgstr "Selecciona una botiga en les seves preferencies (\"%s\")."
 
 msgctxt "field:account.statement,users:"
 msgid "Users"
@@ -95,10 +95,6 @@ msgctxt "field:res.user,sale_device:"
 msgid "Sale Device"
 msgstr "Terminal de venda"
 
-msgctxt "field:sale.configuration,pos_sequence:"
-msgid "Sale Pos Code Sequence"
-msgstr "Seqüencia Venta TPV"
-
 msgctxt "field:sale.device,company:"
 msgid "Company"
 msgstr "Companyia"
@@ -109,7 +105,7 @@ msgstr "Data creació"
 
 msgctxt "field:sale.device,create_uid:"
 msgid "Create User"
-msgstr "Usuari de creació"
+msgstr "Usuari creació"
 
 msgctxt "field:sale.device,id:"
 msgid "ID"
@@ -141,11 +137,11 @@ msgstr "Usuaris"
 
 msgctxt "field:sale.device,write_date:"
 msgid "Write Date"
-msgstr "Data de modificació"
+msgstr "Data modificació"
 
 msgctxt "field:sale.device,write_uid:"
 msgid "Write User"
-msgstr "Usuari de modificació"
+msgstr "Usuari modificació"
 
 msgctxt "field:sale.device.account.statement.journal,create_date:"
 msgid "Create Date"
@@ -153,7 +149,7 @@ msgstr "Data creació"
 
 msgctxt "field:sale.device.account.statement.journal,create_uid:"
 msgid "Create User"
-msgstr "Usuari de creació"
+msgstr "Usuari creació"
 
 msgctxt "field:sale.device.account.statement.journal,device:"
 msgid "Sale Device"
@@ -173,27 +169,11 @@ msgstr "Nom"
 
 msgctxt "field:sale.device.account.statement.journal,write_date:"
 msgid "Write Date"
-msgstr "Data de modificació"
+msgstr "Data modificació"
 
 msgctxt "field:sale.device.account.statement.journal,write_uid:"
 msgid "Write User"
-msgstr "Usuari de modificació"
-
-msgctxt "field:sale.line,amount_w_tax:"
-msgid "Amount with Tax"
-msgstr "Total"
-
-msgctxt "field:sale.line,currency:"
-msgid "Currency"
-msgstr "Moneda"
-
-msgctxt "field:sale.line,currency_digits:"
-msgid "Currency Digits"
-msgstr "Decimals de la moneda"
-
-msgctxt "field:sale.line,unit_price_w_tax:"
-msgid "Unit Price with Tax"
-msgstr "Preu unitat imp. incl."
+msgstr "Usuari modificació"
 
 msgctxt "field:sale.payment.form,currency_digits:"
 msgid "Currency Digits"
@@ -227,10 +207,6 @@ msgctxt "field:sale.sale,payments:"
 msgid "Payments"
 msgstr "Pagaments"
 
-msgctxt "field:sale.sale,pos_create_date:"
-msgid "Create Date"
-msgstr "Data creació"
-
 msgctxt "field:sale.sale,residual_amount:"
 msgid "Residual Amount"
 msgstr "Pendent"
@@ -239,17 +215,9 @@ msgctxt "field:sale.sale,sale_device:"
 msgid "Sale Device"
 msgstr "Terminal de venda"
 
-msgctxt "field:sale.sale,self_pick_up:"
-msgid "Self Pick Up"
-msgstr "Auto-recollida"
-
 msgctxt "field:sale.sale,shop_address:"
 msgid "Shop Address"
 msgstr "Adreça botiga"
-
-msgctxt "field:sale.sale,ticket_number:"
-msgid "Ticket Number"
-msgstr "Número de tiquet"
 
 msgctxt "field:sale.shop,address:"
 msgid "Address"
@@ -258,38 +226,6 @@ msgstr "Adreces"
 msgctxt "field:sale.shop,company_party:"
 msgid ""
 msgstr ""
-
-msgctxt "field:sale.shop,party:"
-msgid "Default Party"
-msgstr "Tercer per defecte"
-
-msgctxt "field:sale.shop,self_pick_up:"
-msgid "Default Self Pick Up"
-msgstr "Auto-recollida per defecte"
-
-msgctxt "field:sale_pos.add_product_form,id:"
-msgid "ID"
-msgstr "ID"
-
-msgctxt "field:sale_pos.add_product_form,sale:"
-msgid "Sale"
-msgstr "Venda"
-
-msgctxt "help:sale.sale,self_pick_up:"
-msgid ""
-"The goods are picked up by the customer before the sale, so no shipment is "
-"created."
-msgstr ""
-"Els productes són recollits pel propi client abans de la venda, pel que no "
-"es generà albarà."
-
-msgctxt "help:sale.shop,self_pick_up:"
-msgid ""
-"The goods are picked up by the customer before the sale, so no shipment is "
-"created."
-msgstr ""
-"Els productes són recollits pel propi client abans de la venda, pel que no "
-"es generà albarà."
 
 msgctxt "model:close.statement.done,name:"
 msgid "Close Statement"
@@ -399,166 +335,6 @@ msgctxt "model:sale.payment.form,name:"
 msgid "Sale Payment Form"
 msgstr "Formulari de pagament de venda"
 
-msgctxt "model:sale_pos.add_product_form,name:"
-msgid "Add Product Form"
-msgstr "Formulari afegeix producte"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Amount"
-msgstr "Import"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Customer:"
-msgstr "Client:"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Date:"
-msgstr "Data:"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Description"
-msgstr "Descripció"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Draft Sale N°"
-msgstr "Factura esborrany Núm."
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Paid:"
-msgstr "Pagat:"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Qty"
-msgstr "Qtat"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Residual:"
-msgstr "Pendent:"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Sale N°"
-msgstr "Venta Núm"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Salesman:"
-msgstr "Atès per:"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Taxes:"
-msgstr "Impostos:"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Ticket Nº"
-msgstr "Factura simplificada Núm."
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Total (excl. taxes):"
-msgstr "Total (sense imp.):"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Total:"
-msgstr "Total:"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Unit Price"
-msgstr "Preu u."
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "$"
-msgstr "$"
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "("
-msgstr "("
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid ")"
-msgstr ")"
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "Amount"
-msgstr "Import"
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "Date"
-msgstr "Data"
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "Notes:"
-msgstr "Observacions:"
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "POS SALES SUMMARY"
-msgstr "RESUM VENDES TPV"
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "Party"
-msgstr "Tercer"
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "TOTAL"
-msgstr "TOTAL"
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "Tax"
-msgstr "Impostos"
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "Ticket Nº"
-msgstr "Factura simplificada Núm."
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "Total"
-msgstr "Total"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "$"
-msgstr "$"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "("
-msgstr "("
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid ")"
-msgstr ")"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "Amount"
-msgstr "Import"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "From:"
-msgstr "Des de:"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "Notes:"
-msgstr "Observacions:"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "POS SALES BY PARTY"
-msgstr "VENDES TPV PER TERCER"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "Party"
-msgstr "Tercer"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "TOTAL"
-msgstr "TOTAL"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "Tax"
-msgstr "Impostos"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "To:"
-msgstr "Fins:"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "Total"
-msgstr "Total"
-
 msgctxt "view:close.statement.done:"
 msgid "Close Statements"
 msgstr "Tanca extractes"
@@ -607,10 +383,6 @@ msgctxt "view:sale.sale:"
 msgid "_Pay"
 msgstr "_Paga"
 
-msgctxt "view:sale_pos.add_product_form:"
-msgid "Add product"
-msgstr "Afegeix producte"
-
 msgctxt "wizard_button:close.statement,done,end:"
 msgid "Done"
 msgstr "Fet"
@@ -642,15 +414,3 @@ msgstr "Cancel·la"
 msgctxt "wizard_button:sale.payment,start,pay_:"
 msgid "Pay"
 msgstr "Paga"
-
-msgctxt "wizard_button:sale_pos.add_product,start,add_:"
-msgid "Add"
-msgstr "Afegeix"
-
-msgctxt "wizard_button:sale_pos.add_product,start,add_new_:"
-msgid "Add and New"
-msgstr "Afegeix i nou"
-
-msgctxt "wizard_button:sale_pos.add_product,start,end:"
-msgid "Cancel"
-msgstr "Cancel·la"

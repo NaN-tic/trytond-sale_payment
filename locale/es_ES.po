@@ -4,7 +4,7 @@ msgstr "Content-Type: text/plain; charset=utf-8\n"
 
 msgctxt "error:account.statement.line:"
 msgid "Amount should be a positive or negative value."
-msgstr "Importe debe ser una cantidad positiva o negativa."
+msgstr "El importe debe ser una cantidad positiva o negativa."
 
 msgctxt "error:close.statement:"
 msgid "Statement %s already closed.\n"
@@ -36,7 +36,7 @@ msgstr "Usuario %s no tiene ningún terminal asignado todavía.\n"
 
 msgctxt "error:res.user:"
 msgid "You can not have two users with the same login!"
-msgstr "¡No puede tener dos usuarios con el mismo registro de entrada!"
+msgstr "No puede tener dos usuarios con el mismo registro de entrada."
 
 msgctxt "error:sale.payment:"
 msgid "A customer invoice/refund from sale device has not been created."
@@ -53,7 +53,7 @@ msgstr "No ha definido un terminal de venta para su usuario."
 
 msgctxt "error:sale.sale:"
 msgid "Go to user preferences and select a shop (\"%s\")"
-msgstr "Seleccione una tienda en sus preferencias (\"%s\")"
+msgstr "Seleccione una tienda en sus preferencias (\"%s\")."
 
 msgctxt "field:account.statement,users:"
 msgid "Users"
@@ -94,10 +94,6 @@ msgstr "ID"
 msgctxt "field:res.user,sale_device:"
 msgid "Sale Device"
 msgstr "Terminal de venta"
-
-msgctxt "field:sale.configuration,pos_sequence:"
-msgid "Sale Pos Code Sequence"
-msgstr "Sequencia Venta TPV"
 
 msgctxt "field:sale.device,company:"
 msgid "Company"
@@ -179,22 +175,6 @@ msgctxt "field:sale.device.account.statement.journal,write_uid:"
 msgid "Write User"
 msgstr "Usuario modificación"
 
-msgctxt "field:sale.line,amount_w_tax:"
-msgid "Amount with Tax"
-msgstr "Total"
-
-msgctxt "field:sale.line,currency:"
-msgid "Currency"
-msgstr "Moneda"
-
-msgctxt "field:sale.line,currency_digits:"
-msgid "Currency Digits"
-msgstr "Decimales de moneda"
-
-msgctxt "field:sale.line,unit_price_w_tax:"
-msgid "Unit Price with Tax"
-msgstr "Precio unidad imp. incl."
-
 msgctxt "field:sale.payment.form,currency_digits:"
 msgid "Currency Digits"
 msgstr "Dígitos moneda"
@@ -213,7 +193,7 @@ msgstr "Diarios de extracto permitidos "
 
 msgctxt "field:sale.payment.form,party:"
 msgid "Party"
-msgstr "Terceros"
+msgstr "Tercero"
 
 msgctxt "field:sale.payment.form,payment_amount:"
 msgid "Payment amount"
@@ -227,10 +207,6 @@ msgctxt "field:sale.sale,payments:"
 msgid "Payments"
 msgstr "Pagos"
 
-msgctxt "field:sale.sale,pos_create_date:"
-msgid "Create Date"
-msgstr "Fecha creación"
-
 msgctxt "field:sale.sale,residual_amount:"
 msgid "Residual Amount"
 msgstr "Pendiente"
@@ -239,17 +215,9 @@ msgctxt "field:sale.sale,sale_device:"
 msgid "Sale Device"
 msgstr "Terminal de venta"
 
-msgctxt "field:sale.sale,self_pick_up:"
-msgid "Self Pick Up"
-msgstr "Autorecogida"
-
 msgctxt "field:sale.sale,shop_address:"
 msgid "Shop Address"
 msgstr "Dirección tienda"
-
-msgctxt "field:sale.sale,ticket_number:"
-msgid "Ticket Number"
-msgstr "Número de ticket"
 
 msgctxt "field:sale.shop,address:"
 msgid ""
@@ -258,38 +226,6 @@ msgstr ""
 msgctxt "field:sale.shop,company_party:"
 msgid ""
 msgstr ""
-
-msgctxt "field:sale.shop,party:"
-msgid "Default Party"
-msgstr "Tercero por defecto"
-
-msgctxt "field:sale.shop,self_pick_up:"
-msgid "Default Self Pick Up"
-msgstr "Autorecogida por defecto"
-
-msgctxt "field:sale_pos.add_product_form,id:"
-msgid "ID"
-msgstr "ID"
-
-msgctxt "field:sale_pos.add_product_form,sale:"
-msgid "Sale"
-msgstr "Venta"
-
-msgctxt "help:sale.sale,self_pick_up:"
-msgid ""
-"The goods are picked up by the customer before the sale, so no shipment is "
-"created."
-msgstr ""
-"Los productos son recogidos por el propio cliente antes de la venta, por lo "
-"que no se crea albarán."
-
-msgctxt "help:sale.shop,self_pick_up:"
-msgid ""
-"The goods are picked up by the customer before the sale, so no shipment is "
-"created."
-msgstr ""
-"Los productos son recogidos por el propio cliente antes de la venta, por lo "
-"que no se crea albarán."
 
 msgctxt "model:close.statement.done,name:"
 msgid "Close Statement"
@@ -321,7 +257,7 @@ msgstr "Cerrar extractos"
 
 msgctxt "model:ir.action,name:wizard_open_statement"
 msgid "Open Statements"
-msgstr "Abrir Extractos"
+msgstr "Abrir extractos"
 
 msgctxt "model:ir.action,name:wizard_sale_payment"
 msgid "Pay"
@@ -369,7 +305,7 @@ msgstr "Cerrar extractos"
 
 msgctxt "model:ir.ui.menu,name:menu_open_statement"
 msgid "Open Statements"
-msgstr "Abrir Extractos"
+msgstr "Abrir extractos"
 
 msgctxt "model:ir.ui.menu,name:menu_sale_device"
 msgid "Sale Devices"
@@ -381,11 +317,11 @@ msgstr "Todos los extractos"
 
 msgctxt "model:open.statement.done,name:"
 msgid "Open Statement"
-msgstr "Abrir Extracto"
+msgstr "Abrir extracto"
 
 msgctxt "model:open.statement.start,name:"
 msgid "Open Statement"
-msgstr "Abrir Extracto"
+msgstr "Abrir extracto"
 
 msgctxt "model:sale.device,name:"
 msgid "Sale Device Configuration"
@@ -398,166 +334,6 @@ msgstr "Terminal de venta - Diario de extracto"
 msgctxt "model:sale.payment.form,name:"
 msgid "Sale Payment Form"
 msgstr "Formulario de pago de venta"
-
-msgctxt "model:sale_pos.add_product_form,name:"
-msgid "Add Product Form"
-msgstr "Formulario añadir producto"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Amount"
-msgstr "Importe"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Customer:"
-msgstr "Cliente:"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Date:"
-msgstr "Fecha:"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Description"
-msgstr "Descripción"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Draft Sale N°"
-msgstr "Venta borrador Nº"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Paid:"
-msgstr "Pagado:"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Qty"
-msgstr "Cant."
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Residual:"
-msgstr "Pendiente:"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Sale N°"
-msgstr "Venta Nº"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Salesman:"
-msgstr "Atendido por:"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Taxes:"
-msgstr "Impuestos:"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Ticket Nº"
-msgstr "Factura simplificada Nº"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Total (excl. taxes):"
-msgstr "Total (sin imp.):"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Total:"
-msgstr "Total:"
-
-msgctxt "odt:sale_pos.sale_pos_ticket:"
-msgid "Unit Price"
-msgstr "Precio u."
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "$"
-msgstr "$"
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "("
-msgstr "("
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid ")"
-msgstr ")"
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "Amount"
-msgstr "Importe"
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "Date"
-msgstr "Fecha"
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "Notes:"
-msgstr "Observaciones:"
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "POS SALES SUMMARY"
-msgstr "RESUMEN VENTAS TPV"
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "Party"
-msgstr "Tercero"
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "TOTAL"
-msgstr "TOTAL"
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "Tax"
-msgstr "Impuestos"
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "Ticket Nº"
-msgstr "Factura simplificada Nº"
-
-msgctxt "odt:sale_pos.sales_summary:"
-msgid "Total"
-msgstr "Total"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "$"
-msgstr "$"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "("
-msgstr "("
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid ")"
-msgstr ")"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "Amount"
-msgstr "Importe"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "From:"
-msgstr "Desde:"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "Notes:"
-msgstr "Observaciones:"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "POS SALES BY PARTY"
-msgstr "VENTAS TPV POR TERCERO"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "Party"
-msgstr "Tercero"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "TOTAL"
-msgstr "TOTAL"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "Tax"
-msgstr "Impuestos"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "To:"
-msgstr "Hasta:"
-
-msgctxt "odt:sale_pos.sales_summary_by_party:"
-msgid "Total"
-msgstr "Total"
 
 msgctxt "view:close.statement.done:"
 msgid "Close Statements"
@@ -573,11 +349,11 @@ msgstr "Va ha cerrar los extractos de su terminal."
 
 msgctxt "view:open.statement.done:"
 msgid "Open Statements"
-msgstr "Abrir Extractos"
+msgstr "Abrir extractos"
 
 msgctxt "view:open.statement.start:"
 msgid "Open Statements"
-msgstr "Abrir Extractos"
+msgstr "Abrir extractos"
 
 msgctxt "view:open.statement.start:"
 msgid "You are going to open statements of your device."
@@ -606,10 +382,6 @@ msgstr "Pagos"
 msgctxt "view:sale.sale:"
 msgid "_Pay"
 msgstr "_Pagar"
-
-msgctxt "view:sale_pos.add_product_form:"
-msgid "Add product"
-msgstr "Añadir producto"
 
 msgctxt "wizard_button:close.statement,done,end:"
 msgid "Done"
@@ -642,15 +414,3 @@ msgstr "Cancelar"
 msgctxt "wizard_button:sale.payment,start,pay_:"
 msgid "Pay"
 msgstr "Pagar"
-
-msgctxt "wizard_button:sale_pos.add_product,start,add_:"
-msgid "Add"
-msgstr "Añadir"
-
-msgctxt "wizard_button:sale_pos.add_product,start,add_new_:"
-msgid "Add and New"
-msgstr "Añadir y nuevo"
-
-msgctxt "wizard_button:sale_pos.add_product,start,end:"
-msgid "Cancel"
-msgstr "Cancelar"
