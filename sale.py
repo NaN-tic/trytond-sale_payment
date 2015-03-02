@@ -113,6 +113,8 @@ class WizardSalePayment(Wizard):
                     'has not been created.'),
                 'not_customer_invoice': ('A customer invoice/refund '
                     'from sale device has not been created.'),
+                'party_without_account_receivable': 'Party %s has no any '
+                    'account receivable defined. Please, assign one.',
                 })
 
     def default_start(self, fields):
@@ -155,13 +157,18 @@ class WizardSalePayment(Wizard):
         if not sale.reference:
             Sale.set_reference([sale])
 
+        account = (sale.party.account_receivable
+            and sale.party.account_receivable.id
+            or self.raise_user_error('party_without_account_receivable',
+                error_args=(sale.party.name,)))
+
         if form.payment_amount:
             payment = StatementLine(
                 statement=statements[0].id,
                 date=Date.today(),
                 amount=form.payment_amount,
                 party=sale.party.id,
-                account=sale.party.account_receivable.id,
+                account=account,
                 description=sale.reference,
                 sale=active_id
                 )
