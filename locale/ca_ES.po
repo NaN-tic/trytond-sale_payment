@@ -48,6 +48,12 @@ msgid "A draft statement for \"%s\" payments has not been created."
 msgstr "Un extracte esborrany per \"%s\" pagaments no s'ha creat."
 
 msgctxt "error:sale.payment:"
+msgid "Party %s has no any account receivable defined. Please, assign one."
+msgstr ""
+"El tercer %s no té definit cap compte a cobrar per defecte. Afegeix un "
+"compte a cobrar en el tercer."
+
+msgctxt "error:sale.payment:"
 msgid "You have not defined a sale device for your user."
 msgstr "No heu definit un terminal de venda per al vostre usuari."
 
