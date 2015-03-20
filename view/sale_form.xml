@@ -15,7 +15,7 @@ copyright notices and license terms. -->
             icon="tryton-go-next"/>
     </xpath>
     <xpath
-        expr="/form/notebook/page[@id=&quot;shipments&quot;]"
+        expr="/form/notebook/page[@id=&quot;other&quot;]"
         position="after">
         <page string="Payments" col="4" id="payments">
             <field name="payments" colspan="4" readonly="1"/>
@@ -25,7 +25,6 @@ copyright notices and license terms. -->
             <field name="residual_amount"/>
         </page>
     </xpath>
-
     <xpath
         expr="/form/notebook/page[@id='other']/field[@name='shop']"
         position="after">
