@@ -37,12 +37,60 @@ class Sale:
                     'readonly': Not(Bool(Eval('lines'))),
                     },
                 })
+        cls._error_messages.update({
+                'not_customer_invoice': ('A customer invoice/refund '
+                    'from sale device has not been created.'),
+                })
 
     @staticmethod
     def default_sale_device():
         User = Pool().get('res.user')
         user = User(Transaction().user)
         return user.sale_device and user.sale_device.id or None
+
+    @classmethod
+    def workflow_to_end(cls, sales):
+        pool = Pool()
+        Invoice = pool.get('account.invoice')
+        Date = pool.get('ir.date')
+        for sale in sales:
+            if sale.state == 'draft':
+                cls.quote([sale])
+            if sale.state == 'quotation':
+                cls.confirm([sale])
+            if sale.state == 'confirmed':
+                cls.process([sale])
+
+            if not sale.invoices and sale.invoice_method == 'order':
+                cls.raise_user_error('not_customer_invoice')
+
+            sale.create_moves_without_shipment()
+
+            grouping = getattr(sale.party, 'sale_invoice_grouping_method',
+                False)
+            if sale.invoices and not grouping:
+                for invoice in sale.invoices:
+                    if invoice.state == 'draft':
+                        if not getattr(invoice, 'invoice_date', False):
+                            invoice.invoice_date = Date.today()
+                        if not getattr(invoice, 'accounting_date', False):
+                            invoice.accounting_date = Date.today()
+                        invoice.description = sale.reference
+                        invoice.save()
+                Invoice.post(sale.invoices)
+                for payment in sale.payments:
+                    invoice = sale.invoices[0]
+                    payment.invoice = invoice.id
+                    # Because of account_invoice_party_without_vat module
+                    # could be installed, invoice party may be different of
+                    # payment party if payment party has not any vat
+                    # and both parties must be the same
+                    if payment.party != invoice.party:
+                        payment.party = invoice.party
+                    payment.save()
+
+            if sale.is_done():
+                cls.do([sale])
 
     @classmethod
     def get_paid_amount(cls, sales, names):
@@ -111,8 +159,6 @@ class WizardSalePayment(Wizard):
                     'your user.'),
                 'not_draft_statement': ('A draft statement for "%s" payments '
                     'has not been created.'),
-                'not_customer_invoice': ('A customer invoice/refund '
-                    'from sale device has not been created.'),
                 'party_without_account_receivable': 'Party %s has no any '
                     'account receivable defined. Please, assign one.',
                 })
@@ -139,7 +185,6 @@ class WizardSalePayment(Wizard):
     def transition_pay_(self):
         pool = Pool()
         Date = pool.get('ir.date')
-        Invoice = pool.get('account.invoice')
         Sale = pool.get('sale.sale')
         Statement = pool.get('account.statement')
         StatementLine = pool.get('account.statement.line')
@@ -182,29 +227,7 @@ class WizardSalePayment(Wizard):
         sale.description = sale.reference
         sale.save()
 
-        Sale.quote([sale])
-        Sale.confirm([sale])
-        Sale.process([sale])
-
-        if not sale.invoices and sale.invoice_method == 'order':
-            self.raise_user_error('not_customer_invoice')
-
-        sale.create_moves_without_shipment()
-
-        grouping = getattr(sale.party, 'sale_invoice_grouping_method', False)
-        if sale.invoices and not grouping:
-            for invoice in sale.invoices:
-                if invoice.state == 'draft':
-                    invoice.description = sale.reference
-                    invoice.save()
-            Invoice.post(sale.invoices)
-            for payment in sale.payments:
-                payment.invoice = sale.invoices[0].id
-                payment.save()
-
-        if sale.is_done():
-            sale.state = 'done'
-            sale.save()
+        Sale.workflow_to_end([sale])
 
         return 'end'
 
