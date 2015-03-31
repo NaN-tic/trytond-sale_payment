@@ -6,7 +6,7 @@ copyright notices and license terms. -->
     <xpath
         expr="/form/notebook/page[@id=&quot;sale&quot;]/group/group[@id=&quot;buttons&quot;]"
         position="replace_attributes">
-        <group col="8" colspan="2" id="buttons"/>
+        <group col="10" colspan="2" id="buttons"/>
     </xpath>
     <xpath
         expr="/form/notebook/page[@id=&quot;sale&quot;]/group/group/button[@name=&quot;process&quot;]"
