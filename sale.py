@@ -64,8 +64,6 @@ class Sale:
             if not sale.invoices and sale.invoice_method == 'order':
                 cls.raise_user_error('not_customer_invoice')
 
-            sale.create_moves_without_shipment()
-
             grouping = getattr(sale.party, 'sale_invoice_grouping_method',
                 False)
             if sale.invoices and not grouping:
@@ -119,9 +117,6 @@ class Sale:
             default = {}
         default['payments'] = None
         return super(Sale, cls).copy(sales, default)
-
-    def create_moves_without_shipment(self):
-        pass
 
 
 class SalePaymentForm(ModelView):
