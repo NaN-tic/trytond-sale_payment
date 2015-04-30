@@ -25,7 +25,9 @@ class Sale:
             readonly=True), 'get_residual_amount')
     sale_device = fields.Many2One('sale.device', 'Sale Device',
             domain=[('shop', '=', Eval('shop'))],
-            depends=['shop']
+            depends=['shop'], states={
+                'readonly': Eval('state') != 'draft',
+                }
     )
 
     @classmethod
