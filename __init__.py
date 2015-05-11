@@ -7,6 +7,7 @@ from .sale import *
 from .statement import *
 from .user import *
 
+
 def register():
     Pool.register(
         Journal,
