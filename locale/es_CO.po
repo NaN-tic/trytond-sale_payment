@@ -220,7 +220,7 @@ msgstr "Pagos"
 
 msgctxt "field:sale.sale,residual_amount:"
 msgid "Residual Amount"
-msgstr "Cambio"
+msgstr "Saldo"
 
 msgctxt "field:sale.sale,sale_device:"
 msgid "Sale Device"

@@ -42,9 +42,7 @@ class SaleDevice(ModelSQL, ModelView):
 
     @fields.depends('shop')
     def on_change_shop(self):
-        return {
-            'company': self.shop.company.id if self.shop else None
-        }
+        self.company = self.shop.company.id if self.shop else None
 
     def get_company(self, name):
         return self.shop.company.id

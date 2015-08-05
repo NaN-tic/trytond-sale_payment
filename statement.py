@@ -157,7 +157,6 @@ class OpenStatement(Wizard):
         pool = Pool()
         User = pool.get('res.user')
         Statement = pool.get('account.statement')
-        Journal = pool.get('account.statement.journal')
 
         user = Transaction().user
         user = User(user)
@@ -249,7 +248,6 @@ class CloseStatement(Wizard):
         pool = Pool()
         User = pool.get('res.user')
         Statement = pool.get('account.statement')
-        Journal = pool.get('account.statement.journal')
 
         user = Transaction().user
         user = User(user)
