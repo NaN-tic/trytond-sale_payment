@@ -11,11 +11,23 @@ msgid "Statement %s already closed.\n"
 msgstr "Extracto %s ya cerrado.\n"
 
 msgctxt "error:close.statement:"
+msgid "Statement %s already closed. \n"
+msgstr "Extracto %s ya cerrado.\n"
+
+msgctxt "error:close.statement:"
 msgid "Statement %s closed.\n"
 msgstr "Extracto %s cerrado.\n"
 
 msgctxt "error:close.statement:"
+msgid "Statement %s closed. \n"
+msgstr "Extracto %s cerrado. \n"
+
+msgctxt "error:close.statement:"
 msgid "Statement %s not found.\n"
+msgstr "Extracto %s no encontrado.\n"
+
+msgctxt "error:close.statement:"
+msgid "Statement %s not found. \n"
 msgstr "Extracto %s no encontrado.\n"
 
 msgctxt "error:close.statement:"
@@ -27,7 +39,15 @@ msgid "Statement %s already opened.\n"
 msgstr "Extracto %s ya abierto.\n"
 
 msgctxt "error:open.statement:"
+msgid "Statement %s already opened. \n"
+msgstr "Extracto %s ya abierto.\n"
+
+msgctxt "error:open.statement:"
 msgid "Statement %s opened.\n"
+msgstr "Extracto %s abierto.\n"
+
+msgctxt "error:open.statement:"
+msgid "Statement %s opened. \n"
 msgstr "Extracto %s abierto.\n"
 
 msgctxt "error:open.statement:"
@@ -41,7 +61,7 @@ msgstr "No puede tener dos usuarios con el mismo registro de entrada."
 msgctxt "error:sale.payment:"
 msgid "A customer invoice/refund from sale device has not been created."
 msgstr ""
-"Una factura/factura de devolución del terminal de venta no se ha creado."
+"Una factura/devolución del terminal de venta no se ha creado."
 
 msgctxt "error:sale.payment:"
 msgid "A draft statement for \"%s\" payments has not been created."
@@ -56,6 +76,11 @@ msgstr ""
 msgctxt "error:sale.payment:"
 msgid "You have not defined a sale device for your user."
 msgstr "No ha definido un terminal de venta para su usuario."
+
+msgctxt "error:sale.sale:"
+msgid "A customer invoice/refund from sale device has not been created."
+msgstr ""
+"Una factura/devolución del terminal de venta no se ha creado."
 
 msgctxt "error:sale.sale:"
 msgid "Go to user preferences and select a shop (\"%s\")"

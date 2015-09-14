@@ -11,11 +11,23 @@ msgid "Statement %s already closed.\n"
 msgstr "Extracte %s ja tancat.\n"
 
 msgctxt "error:close.statement:"
+msgid "Statement %s already closed. \n"
+msgstr "Extracto %s ya cerrado.\n"
+
+msgctxt "error:close.statement:"
 msgid "Statement %s closed.\n"
 msgstr "Extracte %s tancat.\n"
 
 msgctxt "error:close.statement:"
+msgid "Statement %s closed. \n"
+msgstr "Extracte %s ja tancat.\n"
+
+msgctxt "error:close.statement:"
 msgid "Statement %s not found.\n"
+msgstr "Extracte %s no trobat.\n"
+
+msgctxt "error:close.statement:"
+msgid "Statement %s not found. \n"
 msgstr "Extracte %s no trobat.\n"
 
 msgctxt "error:close.statement:"
@@ -27,7 +39,15 @@ msgid "Statement %s already opened.\n"
 msgstr "Extracte %s ja obert.\n"
 
 msgctxt "error:open.statement:"
+msgid "Statement %s already opened. \n"
+msgstr "Extracte %s ja obert.\n"
+
+msgctxt "error:open.statement:"
 msgid "Statement %s opened.\n"
+msgstr "Extracte %s obert.\n"
+
+msgctxt "error:open.statement:"
+msgid "Statement %s opened. \n"
 msgstr "Extracte %s obert.\n"
 
 msgctxt "error:open.statement:"
@@ -41,7 +61,7 @@ msgstr "No podeu tenir dos usuaris amb el mateix identificador d'entrada."
 msgctxt "error:sale.payment:"
 msgid "A customer invoice/refund from sale device has not been created."
 msgstr ""
-"Una factura / factura de devolució d'un terminal de venda no s'ha creat."
+"Una factura/devolució d'un terminal de venda no s'ha creat."
 
 msgctxt "error:sale.payment:"
 msgid "A draft statement for \"%s\" payments has not been created."
@@ -56,6 +76,11 @@ msgstr ""
 msgctxt "error:sale.payment:"
 msgid "You have not defined a sale device for your user."
 msgstr "No heu definit un terminal de venda per al vostre usuari."
+
+msgctxt "error:sale.sale:"
+msgid "A customer invoice/refund from sale device has not been created."
+msgstr ""
+"Una factura/devolució d'un terminal de venda no s'ha creat."
 
 msgctxt "error:sale.sale:"
 msgid "Go to user preferences and select a shop (\"%s\")"
@@ -231,7 +256,7 @@ msgstr "Adreces"
 
 msgctxt "field:sale.shop,company_party:"
 msgid ""
-msgstr ""
+msgstr " "
 
 msgctxt "model:close.statement.done,name:"
 msgid "Close Statement"
