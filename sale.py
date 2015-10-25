@@ -244,7 +244,7 @@ class WizardSaleReconcile(Wizard):
             lines = []
             amount = Decimal('0.0')
             for invoice in sale.invoices:
-                for line in Line.browse(invoice.get_lines_to_pay(None)):
+                for line in invoice.lines_to_pay:
                     if not line.reconciliation:
                         lines.append(line)
                         amount += line.debit - line.credit
