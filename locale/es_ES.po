@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
@@ -7,24 +7,12 @@ msgid "Amount should be a positive or negative value."
 msgstr "El importe debe ser una cantidad positiva o negativa."
 
 msgctxt "error:close.statement:"
-msgid "Statement %s already closed.\n"
-msgstr "Extracto %s ya cerrado.\n"
-
-msgctxt "error:close.statement:"
 msgid "Statement %s already closed. \n"
 msgstr "Extracto %s ya cerrado.\n"
 
 msgctxt "error:close.statement:"
-msgid "Statement %s closed.\n"
-msgstr "Extracto %s cerrado.\n"
-
-msgctxt "error:close.statement:"
 msgid "Statement %s closed. \n"
 msgstr "Extracto %s cerrado. \n"
-
-msgctxt "error:close.statement:"
-msgid "Statement %s not found.\n"
-msgstr "Extracto %s no encontrado.\n"
 
 msgctxt "error:close.statement:"
 msgid "Statement %s not found. \n"
@@ -35,16 +23,8 @@ msgid "User %s has not any device assigned yet.\n"
 msgstr "Usuario %s no tiene ningún terminal asignado todavía.\n"
 
 msgctxt "error:open.statement:"
-msgid "Statement %s already opened.\n"
-msgstr "Extracto %s ya abierto.\n"
-
-msgctxt "error:open.statement:"
 msgid "Statement %s already opened. \n"
 msgstr "Extracto %s ya abierto.\n"
-
-msgctxt "error:open.statement:"
-msgid "Statement %s opened.\n"
-msgstr "Extracto %s abierto.\n"
 
 msgctxt "error:open.statement:"
 msgid "Statement %s opened. \n"
@@ -57,11 +37,6 @@ msgstr "Usuario %s no tiene ningún terminal asignado todavía.\n"
 msgctxt "error:res.user:"
 msgid "You can not have two users with the same login!"
 msgstr "No puede tener dos usuarios con el mismo registro de entrada."
-
-msgctxt "error:sale.payment:"
-msgid "A customer invoice/refund from sale device has not been created."
-msgstr ""
-"Una factura/devolución del terminal de venta no se ha creado."
 
 msgctxt "error:sale.payment:"
 msgid "A draft statement for \"%s\" payments has not been created."
@@ -79,8 +54,7 @@ msgstr "No ha definido un terminal de venta para su usuario."
 
 msgctxt "error:sale.sale:"
 msgid "A customer invoice/refund from sale device has not been created."
-msgstr ""
-"Una factura/devolución del terminal de venta no se ha creado."
+msgstr "Una factura/devolución del terminal de venta no se ha creado."
 
 msgctxt "error:sale.sale:"
 msgid "Go to user preferences and select a shop (\"%s\")"
@@ -266,10 +240,6 @@ msgctxt "model:close.statement.start,name:"
 msgid "Close Statement"
 msgstr "Cerrar extracto"
 
-msgctxt "model:ir.action,name:"
-msgid "POS Device"
-msgstr "Dispositivo TPV"
-
 msgctxt "model:ir.action,name:act_sale_device"
 msgid "Sale Device"
 msgstr "Terminal de venta"
@@ -325,10 +295,6 @@ msgstr "Venta TPV"
 msgctxt "model:ir.sequence.type,name:"
 msgid "Sale Pos"
 msgstr "Venta TPV"
-
-msgctxt "model:ir.ui.menu,name:"
-msgid "POS Devices"
-msgstr "Dispositivos TPV"
 
 msgctxt "model:ir.ui.menu,name:menu_close_statement"
 msgid "Close Statements"
@@ -407,12 +373,12 @@ msgid "Sale Payment Form"
 msgstr "Formulario de pago de venta"
 
 msgctxt "view:sale.sale:"
-msgid "Payments"
-msgstr "Pagos"
+msgid "Pay"
+msgstr "Pagar"
 
 msgctxt "view:sale.sale:"
-msgid "_Pay"
-msgstr "_Pagar"
+msgid "Payments"
+msgstr "Pagos"
 
 msgctxt "wizard_button:close.statement,done,end:"
 msgid "Done"
