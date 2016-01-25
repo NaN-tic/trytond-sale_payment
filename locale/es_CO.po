@@ -246,10 +246,6 @@ msgctxt "model:close.statement.start,name:"
 msgid "Close Statement"
 msgstr "Cerrar Estado de Cuenta"
 
-msgctxt "model:ir.action,name:"
-msgid "POS Device"
-msgstr "Dispositivo POS"
-
 msgctxt "model:ir.action,name:act_sale_device"
 msgid "Sale Device"
 msgstr "Terminal de Venta"
@@ -305,10 +301,6 @@ msgstr "Venta TPV"
 msgctxt "model:ir.sequence.type,name:"
 msgid "Sale Pos"
 msgstr "Venta TPV"
-
-msgctxt "model:ir.ui.menu,name:"
-msgid "POS Devices"
-msgstr "Dispositivos POS"
 
 msgctxt "model:ir.ui.menu,name:menu_close_statement"
 msgid "Close Statements"
