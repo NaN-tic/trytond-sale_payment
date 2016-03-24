@@ -55,7 +55,7 @@ msgstr "No ha definido un terminal de venta para su usuario."
 msgctxt "error:sale.sale:"
 msgid "A customer invoice/refund from sale device has not been created."
 msgstr ""
-"No ha sido creada una factura/nota de crédito de cliente de una venta."
+"No ha sido creada una factura/nota de crédito de cliente desde terminal de venta."
 
 msgctxt "error:sale.sale:"
 msgid "Go to user preferences and select a shop (\"%s\")"
