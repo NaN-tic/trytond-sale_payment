@@ -142,8 +142,8 @@ class OpenStatement(Wizard):
     def __setup__(cls):
         super(OpenStatement, cls).__setup__()
         cls._error_messages.update({
-            'open_statement': 'Statement %s opened.\n',
-            'statement_already_opened': 'Statement %s already opened.\n',
+            'open_statement': 'Statement %s opened. \n',
+            'statement_already_opened': 'Statement %s already opened. \n',
             'user_without_device': 'User %s has not any device assigned yet.'
                 '\n',
             })
@@ -157,7 +157,6 @@ class OpenStatement(Wizard):
         pool = Pool()
         User = pool.get('res.user')
         Statement = pool.get('account.statement')
-        Journal = pool.get('account.statement.journal')
 
         user = Transaction().user
         user = User(user)
@@ -233,9 +232,9 @@ class CloseStatement(Wizard):
     def __setup__(cls):
         super(CloseStatement, cls).__setup__()
         cls._error_messages.update({
-            'close_statement': 'Statement %s closed.\n',
-            'statement_already_closed': 'Statement %s already closed.\n',
-            'not_statement_found': 'Statement %s not found.\n',
+            'close_statement': 'Statement %s closed. \n',
+            'statement_already_closed': 'Statement %s already closed. \n',
+            'not_statement_found': 'Statement %s not found. \n',
             'user_without_device': 'User %s has not any device assigned yet.'
                 '\n',
             })
@@ -249,7 +248,6 @@ class CloseStatement(Wizard):
         pool = Pool()
         User = pool.get('res.user')
         Statement = pool.get('account.statement')
-        Journal = pool.get('account.statement.journal')
 
         user = Transaction().user
         user = User(user)
@@ -285,7 +283,8 @@ class CloseStatement(Wizard):
                     result += self.raise_user_error('not_statement_found',
                         error_args=(journal.rec_name,),
                         raise_exception=False)
-            Statement.validate_statement(statements)
+            if statements:
+                Statement.validate_statement(statements)
             self.result = result
         else:
             self.result = self.raise_user_error('user_without_device',

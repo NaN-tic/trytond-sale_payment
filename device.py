@@ -4,7 +4,6 @@
 from trytond import backend
 from trytond.model import ModelSQL, ModelView, fields
 from trytond.pyson import Eval
-from trytond.transaction import Transaction
 
 
 __all__ = ['SaleDevice', 'SaleDeviceStatementJournal']
@@ -32,19 +31,16 @@ class SaleDevice(ModelSQL, ModelView):
     @classmethod
     def __register__(cls, module_name):
         TableHandler = backend.get('TableHandler')
-        cursor = Transaction().cursor
 
         old_table = 'sale_pos_device'
-        if TableHandler.table_exist(cursor, old_table):
-            TableHandler.table_rename(cursor, old_table, cls._table)
+        if TableHandler.table_exist(old_table):
+            TableHandler.table_rename(old_table, cls._table)
 
         super(SaleDevice, cls).__register__(module_name)
 
     @fields.depends('shop')
     def on_change_shop(self):
-        return {
-            'company': self.shop.company.id if self.shop else None
-        }
+        self.company = self.shop.company.id if self.shop else None
 
     def get_company(self, name):
         return self.shop.company.id
@@ -66,12 +62,11 @@ class SaleDeviceStatementJournal(ModelSQL):
     @classmethod
     def __register__(cls, module_name):
         TableHandler = backend.get('TableHandler')
-        cursor = Transaction().cursor
-        table = TableHandler(cursor, cls, module_name)
+        table = TableHandler(cls, module_name)
 
         old_table = 'sale_pos_device_account_statement_journal'
-        if TableHandler.table_exist(cursor, old_table):
-            TableHandler.table_rename(cursor, old_table, cls._table)
+        if TableHandler.table_exist(old_table):
+            TableHandler.table_rename(old_table, cls._table)
 
         old_column = 'pos_device'
         new_column = 'device'

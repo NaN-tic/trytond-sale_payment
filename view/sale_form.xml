@@ -11,7 +11,7 @@ copyright notices and license terms. -->
     <xpath
         expr="/form/notebook/page[@id=&quot;sale&quot;]/group/group/button[@name=&quot;process&quot;]"
         position="after">
-        <button name="wizard_sale_payment" string="_Pay"
+        <button name="wizard_sale_payment" string="Pay"
             icon="tryton-go-next"/>
     </xpath>
     <xpath

@@ -5,7 +5,6 @@ from trytond import backend
 from trytond.model import fields
 from trytond.pool import PoolMeta
 from trytond.pyson import Eval
-from trytond.transaction import Transaction
 
 
 __all__ = ['User']
@@ -30,8 +29,7 @@ class User:
     @classmethod
     def __register__(cls, module_name):
         TableHandler = backend.get('TableHandler')
-        cursor = Transaction().cursor
-        table = TableHandler(cursor, cls, module_name)
+        table = TableHandler(cls, module_name)
 
         # Migrate from sale_pos 3.0
         old_column = 'pos_device'
