@@ -13,10 +13,9 @@ from trytond.wizard import Wizard, StateView, StateTransition, Button
 __all__ = ['Sale', 'SalePaymentForm', 'WizardSalePayment',
     'WizardSaleReconcile']
 
-__metaclass__ = PoolMeta
-
 
 class Sale:
+    __metaclass__ = PoolMeta
     __name__ = 'sale.sale'
     payments = fields.One2Many('account.statement.line', 'sale', 'Payments')
     paid_amount = fields.Function(fields.Numeric('Paid Amount', readonly=True),

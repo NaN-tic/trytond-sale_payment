@@ -10,15 +10,16 @@ from decimal import Decimal
 __all__ = ['Journal', 'Statement', 'Line', 'OpenStatementStart',
     'OpenStatementDone', 'OpenStatement', 'CloseStatementStart',
     'CloseStatementDone', 'CloseStatement']
-__metaclass__ = PoolMeta
 
 
 class Journal:
+    __metaclass__ = PoolMeta
     __name__ = 'account.statement.journal'
     devices = fields.One2Many('sale.device', 'journal', 'Devices')
 
 
 class Statement:
+    __metaclass__ = PoolMeta
     __name__ = 'account.statement'
     users = fields.Function(fields.One2Many('res.user', None, 'Users'),
         'get_users', setter='set_users', searcher='search_users')
@@ -58,6 +59,7 @@ class Statement:
 
 
 class Line:
+    __metaclass__ = PoolMeta
     __name__ = 'account.statement.line'
     sale = fields.Many2One('sale.sale', 'Sale', ondelete='RESTRICT')
 
