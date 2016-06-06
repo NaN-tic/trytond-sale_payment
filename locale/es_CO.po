@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
@@ -7,27 +7,27 @@ msgid "Amount should be a positive or negative value."
 msgstr "El importe debe ser una cantidad positiva o negativa."
 
 msgctxt "error:close.statement:"
-msgid "Statement %s already closed.\n"
+msgid "Statement %s already closed. \n"
 msgstr "El estado de cuenta %s esta cerrado."
 
 msgctxt "error:close.statement:"
-msgid "Statement %s closed.\n"
+msgid "Statement %s closed. \n"
 msgstr "Estado de cuenta %s cerrado."
 
 msgctxt "error:close.statement:"
-msgid "Statement %s not found.\n"
+msgid "Statement %s not found. \n"
 msgstr "Estado de cuenta %s no encontrado."
 
 msgctxt "error:close.statement:"
 msgid "User %s has not any device assigned yet.\n"
-msgstr "El Usuario %s no tiene ningún terminal asignado todavía."
+msgstr "El usuario %s no tiene ningún terminal asignado todavía."
 
 msgctxt "error:open.statement:"
-msgid "Statement %s already opened.\n"
-msgstr "El estado de cuenta %s esta abierto."
+msgid "Statement %s already opened. \n"
+msgstr "Estado de cuenta %s abierto."
 
 msgctxt "error:open.statement:"
-msgid "Statement %s opened.\n"
+msgid "Statement %s opened. \n"
 msgstr "Estado de cuenta %s abierto."
 
 msgctxt "error:open.statement:"
@@ -37,11 +37,6 @@ msgstr "El usuario %s no tiene ningún terminal asignado todavía."
 msgctxt "error:res.user:"
 msgid "You can not have two users with the same login!"
 msgstr "No puede tener dos usuarios con el mismo registro de entrada."
-
-msgctxt "error:sale.payment:"
-msgid "A customer invoice/refund from sale device has not been created."
-msgstr ""
-"Una factura de venta/devolución del terminal de venta no se ha creado."
 
 msgctxt "error:sale.payment:"
 msgid "A draft statement for \"%s\" payments has not been created."
@@ -64,7 +59,7 @@ msgstr ""
 
 msgctxt "error:sale.sale:"
 msgid "Go to user preferences and select a shop (\"%s\")"
-msgstr "Seleccione una tienda en sus preferencias (\"%s\")."
+msgstr "Ir a preferencias de usuario y seleccione una tienda (\"%s\")"
 
 msgctxt "field:account.statement,users:"
 msgid "Users"
@@ -287,7 +282,7 @@ msgstr "Borrador"
 msgctxt ""
 "model:ir.action.act_window.domain,name:act_sale_statement_form_domain_posted"
 msgid "Posted"
-msgstr "Confirmado"
+msgstr "Contabilizado"
 
 msgctxt ""
 "model:ir.action.act_window.domain,name:act_sale_statement_form_domain_validated"
@@ -296,11 +291,11 @@ msgstr "Validado"
 
 msgctxt "model:ir.sequence.strict,name:"
 msgid "Sale Pos"
-msgstr "Venta TPV"
+msgstr "Venta Pos"
 
 msgctxt "model:ir.sequence.type,name:"
 msgid "Sale Pos"
-msgstr "Venta TPV"
+msgstr "Venta Pos"
 
 msgctxt "model:ir.ui.menu,name:menu_close_statement"
 msgid "Close Statements"
@@ -360,7 +355,7 @@ msgstr "Abrir Estados de Cuenta"
 
 msgctxt "view:open.statement.start:"
 msgid "You are going to open statements of your device."
-msgstr "Va a abrir los estados de cuenta de su terminal"
+msgstr "Va a abrir los estados de cuenta de su terminal."
 
 msgctxt "view:product.product:"
 msgid "Codes"
@@ -379,12 +374,12 @@ msgid "Sale Payment Form"
 msgstr "Formulario de Pago"
 
 msgctxt "view:sale.sale:"
-msgid "Payments"
-msgstr "Pagos"
+msgid "Pay"
+msgstr "Pago"
 
 msgctxt "view:sale.sale:"
-msgid "_Pay"
-msgstr "_Pagar"
+msgid "Payments"
+msgstr "Pagos"
 
 msgctxt "wizard_button:close.statement,done,end:"
 msgid "Done"
