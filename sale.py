@@ -2,6 +2,10 @@
 # The COPYRIGHT file at the top level of this repository contains the full
 # copyright notices and license terms.
 from decimal import Decimal
+from sql import Cast, Literal
+from sql.aggregate import Sum
+from sql.conditionals import Coalesce
+from sql.functions import Substring, Position
 
 from trytond.model import ModelView, fields
 from trytond.pool import PoolMeta, Pool
@@ -20,8 +24,8 @@ class Sale:
     payments = fields.One2Many('account.statement.line', 'sale', 'Payments')
     paid_amount = fields.Function(fields.Numeric('Paid Amount', readonly=True),
         'get_paid_amount')
-    residual_amount = fields.Function(fields.Numeric('Residual Amount',
-            readonly=True), 'get_residual_amount')
+    residual_amount = fields.Function(fields.Numeric('Residual Amount'),
+        'get_residual_amount', searcher='search_residual_amount')
     sale_device = fields.Many2One('sale.device', 'Sale Device',
             domain=[('shop', '=', Eval('shop'))],
             depends=['shop'], states={
@@ -106,6 +110,52 @@ class Sale:
             n: {s.id: s.total_amount - s.paid_amount for s in sales}
             for n in names
             }
+
+    @classmethod
+    def search_residual_amount(cls, name, clause):
+        pool = Pool()
+        Sale = pool.get('sale.sale')
+        SaleLine = pool.get('sale.line')
+        Invoice = pool.get('account.invoice')
+        InvoiceLine = pool.get('account.invoice.line')
+        StatementLine = pool.get('account.statement.line')
+
+        sale = Sale.__table__()
+        saleline = SaleLine.__table__()
+        invoice = Invoice.__table__()
+        invoiceline = InvoiceLine.__table__()
+        line = StatementLine.__table__()
+
+        grouped = sale.join(
+            line,
+            type_='LEFT',
+            condition=(sale.id == line.sale)
+            ).select(
+                sale.id,
+                where=((sale.total_amount_cache != None) &
+                    (sale.state.in_(['confirmed', 'processing', 'done']))),
+                group_by=(sale.id),
+                having=(
+                    Sum(Coalesce(line.amount, 0)) < sale.total_amount_cache))
+
+        query = grouped.join(
+                saleline,
+                condition=(saleline.sale == grouped.id)
+            ).join(
+                invoiceline,
+                condition=(Cast(Substring(invoiceline.origin,
+                        Position(',', invoiceline.origin) + Literal(1)),
+                    SaleLine.id.sql_type().base) == saleline.id)
+            ).join(
+                invoice,
+                condition=(invoice.id == invoiceline.invoice)
+            ).select(
+                grouped.id,
+                where=(invoice.state == 'posted'),
+                group_by=(grouped.id)
+            )
+
+        return [('id', 'in', query)]
 
     @classmethod
     @ModelView.button_action('sale_payment.wizard_sale_payment')
