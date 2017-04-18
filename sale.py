@@ -245,7 +245,7 @@ class WizardSalePayment(Wizard):
 
         active_id = Transaction().context.get('active_id', False)
         sale = Sale(active_id)
-        if not sale.reference:
+        if not sale.number:
             Sale.set_number([sale])
 
         account = (sale.party.account_receivable
