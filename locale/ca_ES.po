@@ -59,11 +59,6 @@ msgid "You can not have two users with the same login!"
 msgstr "No podeu tenir dos usuaris amb el mateix identificador d'entrada."
 
 msgctxt "error:sale.payment:"
-msgid "A customer invoice/refund from sale device has not been created."
-msgstr ""
-"Una factura/devolució d'un terminal de venda no s'ha creat."
-
-msgctxt "error:sale.payment:"
 msgid "A draft statement for \"%s\" payments has not been created."
 msgstr "Un extracte esborrany per \"%s\" pagaments no s'ha creat."
 
@@ -78,9 +73,9 @@ msgid "You have not defined a sale device for your user."
 msgstr "No heu definit un terminal de venda per al vostre usuari."
 
 msgctxt "error:sale.sale:"
-msgid "A customer invoice/refund from sale device has not been created."
+msgid "A customer invoice/refund from sale device (%s) has not been created."
 msgstr ""
-"Una factura/devolució d'un terminal de venda no s'ha creat."
+"Una factura/devolució d'un terminal de venda (%s) no s'ha creat."
 
 msgctxt "error:sale.sale:"
 msgid "Go to user preferences and select a shop (\"%s\")"
