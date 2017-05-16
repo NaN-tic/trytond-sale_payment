@@ -41,7 +41,7 @@ class Sale:
                 })
         cls._error_messages.update({
                 'not_customer_invoice': ('A customer invoice/refund '
-                    'from sale device has not been created.'),
+                    'from sale device (%s) has not been created.'),
                 })
 
     @staticmethod
@@ -64,7 +64,7 @@ class Sale:
                 cls.process([sale])
 
             if not sale.invoices and sale.invoice_method == 'order':
-                cls.raise_user_error('not_customer_invoice')
+                cls.raise_user_error('not_customer_invoice', (sale.reference,))
 
             grouping = getattr(sale.party, 'sale_invoice_grouping_method',
                 False)

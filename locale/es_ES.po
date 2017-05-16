@@ -53,8 +53,8 @@ msgid "You have not defined a sale device for your user."
 msgstr "No ha definido un terminal de venta para su usuario."
 
 msgctxt "error:sale.sale:"
-msgid "A customer invoice/refund from sale device has not been created."
-msgstr "Una factura/devolución del terminal de venta no se ha creado."
+msgid "A customer invoice/refund from sale device (%s) has not been created."
+msgstr "Una factura/devolución del terminal de venta (%s) no se ha creado."
 
 msgctxt "error:sale.sale:"
 msgid "Go to user preferences and select a shop (\"%s\")"
