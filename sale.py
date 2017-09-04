@@ -260,7 +260,7 @@ class WizardSalePayment(Wizard):
                 amount=form.payment_amount,
                 party=sale.party.id,
                 account=account,
-                description=sale.reference,
+                description=sale.number,
                 sale=active_id
                 )
             payment.save()
