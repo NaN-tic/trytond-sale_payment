@@ -240,6 +240,10 @@ msgctxt "model:close.statement.start,name:"
 msgid "Close Statement"
 msgstr "Cerrar extracto"
 
+msgctxt "model:ir.action,name:act_payment_form"
+msgid "Payments"
+msgstr "Pagaments"
+
 msgctxt "model:ir.action,name:act_sale_device"
 msgid "Sale Device"
 msgstr "Terminal de venta"

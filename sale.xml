@@ -4,12 +4,25 @@ The COPYRIGHT file at the top level of this repository contains the full
 copyright notices and license terms. -->
 <tryton>
     <data>
-
         <record model="ir.ui.view" id="sale_view_form">
             <field name="model">sale.sale</field>
             <field name="type">form</field>
             <field name="inherit" ref="sale.sale_view_form"/>
             <field name="name">sale_form</field>
+        </record>
+
+        <record model="ir.action.act_window" id="act_payment_form">
+            <field name="name">Payments</field>
+            <field name="res_model">account.statement.line</field>
+            <field name="domain"
+                eval="[('sale', 'in', Eval('active_ids'))]"
+                pyson="1"/>
+        </record>
+        <record model="ir.action.keyword"
+                id="act_open_payment_keyword1">
+            <field name="keyword">form_relate</field>
+            <field name="model">sale.sale,-1</field>
+            <field name="action" ref="act_payment_form"/>
         </record>
 
         <record model="ir.action.wizard" id="wizard_sale_payment">
