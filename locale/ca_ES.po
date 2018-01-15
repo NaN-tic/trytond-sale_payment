@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
@@ -260,6 +260,10 @@ msgstr "Tanca extracte"
 msgctxt "model:close.statement.start,name:"
 msgid "Close Statement"
 msgstr "Tanca extracte"
+
+msgctxt "model:ir.action,name:act_payment_form"
+msgid "Payments"
+msgstr "Pagaments"
 
 msgctxt "model:ir.action,name:act_sale_device"
 msgid "Sale Device"
