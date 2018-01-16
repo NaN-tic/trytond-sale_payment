@@ -91,7 +91,7 @@ class Sale:
 
                 for payment in sale.payments:
                     invoices = [invoice for invoice in sale.invoices
-                        if invoice.state not in ['cancel', 'draft']]
+                        if invoice.state == 'posted']
                     if not invoices:
                         continue
                     payment.invoice = invoices[0]
