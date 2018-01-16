@@ -54,7 +54,9 @@ class Sale:
     def workflow_to_end(cls, sales):
         pool = Pool()
         Invoice = pool.get('account.invoice')
+        StatementLine = pool.get('account.statement.line')
         Date = pool.get('ir.date')
+
         for sale in sales:
             if sale.state == 'draft':
                 cls.quote([sale])
@@ -69,25 +71,40 @@ class Sale:
             grouping = getattr(sale.party, 'sale_invoice_grouping_method',
                 False)
             if sale.invoices and not grouping:
+                invoices = []
+                to_post = set()
+                to_write = []
                 for invoice in sale.invoices:
-                    if invoice.state == 'draft':
-                        if not getattr(invoice, 'invoice_date', False):
-                            invoice.invoice_date = Date.today()
-                        if not getattr(invoice, 'accounting_date', False):
-                            invoice.accounting_date = Date.today()
-                        invoice.description = sale.reference
-                        invoice.save()
-                Invoice.post(sale.invoices)
+                    if not invoice.state == 'draft':
+                        continue
+                    if not getattr(invoice, 'invoice_date', False):
+                        invoice.invoice_date = Date.today()
+                    if not getattr(invoice, 'accounting_date', False):
+                        invoice.accounting_date = Date.today()
+                    invoice.description = sale.reference
+                    invoices.extend(([invoice], invoice._save_values))
+                    to_post.add(invoice)
+
+                if to_post:
+                    Invoice.write(*invoices)
+                    Invoice.post(list(to_post))
+
                 for payment in sale.payments:
-                    invoice = sale.invoices[0]
-                    payment.invoice = invoice.id
+                    invoices = [invoice for invoice in sale.invoices
+                        if invoice.state not in ['cancel', 'draft']]
+                    if not invoices:
+                        continue
+                    payment.invoice = invoices[0]
                     # Because of account_invoice_party_without_vat module
                     # could be installed, invoice party may be different of
                     # payment party if payment party has not any vat
                     # and both parties must be the same
                     if payment.party != invoice.party:
                         payment.party = invoice.party
-                    payment.save()
+                    to_write.extend(([payment], payment._save_values))
+
+                if to_write:
+                    StatementLine.write(*to_write)
 
             if sale.is_done():
                 cls.do([sale])
