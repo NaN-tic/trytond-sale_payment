@@ -57,6 +57,8 @@ class Sale:
         StatementLine = pool.get('account.statement.line')
         Date = pool.get('ir.date')
 
+        invoices = []
+        to_post = set()
         for sale in sales:
             if sale.state == 'draft':
                 cls.quote([sale])
@@ -71,9 +73,6 @@ class Sale:
             grouping = getattr(sale.party, 'sale_invoice_grouping_method',
                 False)
             if sale.invoices and not grouping:
-                invoices = []
-                to_post = set()
-                to_write = []
                 for invoice in sale.invoices:
                     if not invoice.state == 'draft':
                         continue
@@ -85,29 +84,35 @@ class Sale:
                     invoices.extend(([invoice], invoice._save_values))
                     to_post.add(invoice)
 
-                if to_post:
-                    Invoice.write(*invoices)
-                    Invoice.post(list(to_post))
+        if to_post:
+            Invoice.write(*invoices)
+            Invoice.post(list(to_post))
 
-                for payment in sale.payments:
-                    invoices = [invoice for invoice in sale.invoices
-                        if invoice.state == 'posted']
-                    if not invoices:
-                        continue
-                    payment.invoice = invoices[0]
-                    # Because of account_invoice_party_without_vat module
-                    # could be installed, invoice party may be different of
-                    # payment party if payment party has not any vat
-                    # and both parties must be the same
-                    if payment.party != invoice.party:
-                        payment.party = invoice.party
-                    to_write.extend(([payment], payment._save_values))
-
-                if to_write:
-                    StatementLine.write(*to_write)
+        to_write = []
+        to_do = []
+        for sale in sales:
+            for payment in sale.payments:
+                invoices = [invoice for invoice in sale.invoices
+                    if invoice and invoice.state == 'posted']
+                if not invoices:
+                    continue
+                payment.invoice = invoices[0]
+                # Because of account_invoice_party_without_vat module
+                # could be installed, invoice party may be different of
+                # payment party if payment party has not any vat
+                # and both parties must be the same
+                if payment.party != invoice.party:
+                    payment.party = invoice.party
+                to_write.extend(([payment], payment._save_values))
 
             if sale.is_done():
-                cls.do([sale])
+                to_do.append(sale)
+
+        if to_write:
+            StatementLine.write(*to_write)
+
+        if to_do:
+            cls.do(to_do)
 
     @classmethod
     def get_paid_amount(cls, sales, names):
