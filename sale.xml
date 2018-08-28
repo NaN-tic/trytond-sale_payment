@@ -42,5 +42,12 @@ copyright notices and license terms. -->
             <field name="model">sale.sale,-1</field>
             <field name="action" ref="act_sale_reconcile"/>
         </record>
+
+        <!-- buttons -->
+        <record model="ir.model.button" id="sale_payment_wizard_button">
+            <field name="name">wizard_sale_payment</field>
+            <field name="string">Pay</field>
+            <field name="model" search="[('model', '=', 'sale.sale')]"/>
+        </record>
     </data>
 </tryton>
