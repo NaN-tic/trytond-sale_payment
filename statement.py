@@ -22,7 +22,7 @@ class Statement:
     __metaclass__ = PoolMeta
     __name__ = 'account.statement'
     users = fields.Function(fields.One2Many('res.user', None, 'Users'),
-        'get_users', setter='set_users', searcher='search_users')
+        'get_users', searcher='search_users')
 
     @classmethod
     def get_users(cls, statements, names):

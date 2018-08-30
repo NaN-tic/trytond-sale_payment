@@ -52,6 +52,7 @@ Create parties::
 
     >>> Party = Model.get('party.party')
     >>> customer = Party(name='Customer')
+    >>> customer.account_receivable = receivable
     >>> customer.save()
 
 Create category::
@@ -103,8 +104,8 @@ Create a shop::
     >>> shop = Shop()
     >>> shop.name = 'Local shop'
     >>> shop.warehouse = warehouse
-    >>> shop.shipment_method = 'order'
-    >>> shop.invoice_method = 'order'
+    >>> shop.sale_shipment_method = 'order'
+    >>> shop.sale_invoice_method = 'order'
     >>> sequence, = Sequence.find([('code', '=', 'sale.sale')])
     >>> shop.sale_sequence = sequence
     >>> shop.payment_term = payment_term
@@ -203,8 +204,8 @@ Open statements for current device::
     0
     >>> open_statment = Wizard('open.statement')
     >>> open_statment.execute('create_')
-    >>> open_statment.form.result
-    u'Statement Default opened. \n'
+    >>> open_statment.form.result == 'Statement Default opened. \n'
+    True
     >>> payment_statement, = Statement.find([('state', '=', 'draft')])
 
 Partially pay the sale::
@@ -256,8 +257,8 @@ An invoice should be created for the sale::
 
     >>> invoice, = sale.invoices
     >>> config.user = account_user.id
-    >>> invoice.state
-    u'posted'
+    >>> invoice.state == 'posted'
+    True
     >>> invoice.untaxed_amount
     Decimal('20.00')
     >>> invoice.tax_amount
@@ -269,19 +270,19 @@ When the statement is closed the invoices are paid and sale is done::
 
     >>> close_statment = Wizard('close.statement')
     >>> close_statment.execute('validate')
-    >>> close_statment.form.result
-    u'Statement Default - Default closed. \n'
+    >>> close_statment.form.result == 'Statement Default - Default closed. \n'
+    True
     >>> payment_statement.reload()
-    >>> payment_statement.state
-    u'validated'
+    >>> payment_statement.state == 'validated'
+    True
     >>> all(l.invoice == invoice for l in payment_statement.lines)
     True
     >>> payment_statement.balance
     Decimal('22.00')
     >>> invoice.reload()
-    >>> invoice.state
-    u'paid'
+    >>> invoice.state == 'paid'
+    True
     >>> config.user = sale_user.id
     >>> sale.reload()
-    >>> sale.state
-    u'done'
+    >>> sale.state == 'done'
+    True
