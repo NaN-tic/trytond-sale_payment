@@ -18,8 +18,7 @@ __all__ = ['Sale', 'SalePaymentForm', 'WizardSalePayment',
     'WizardSaleReconcile']
 
 
-class Sale:
-    __metaclass__ = PoolMeta
+class Sale(metaclass=PoolMeta):
     __name__ = 'sale.sale'
     payments = fields.One2Many('account.statement.line', 'sale', 'Payments')
     paid_amount = fields.Function(fields.Numeric('Paid Amount', readonly=True),

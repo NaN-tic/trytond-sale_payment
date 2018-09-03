@@ -12,14 +12,12 @@ __all__ = ['Journal', 'Statement', 'Line', 'OpenStatementStart',
     'CloseStatementDone', 'CloseStatement']
 
 
-class Journal:
-    __metaclass__ = PoolMeta
+class Journal(metaclass=PoolMeta):
     __name__ = 'account.statement.journal'
     devices = fields.One2Many('sale.device', 'journal', 'Devices')
 
 
-class Statement:
-    __metaclass__ = PoolMeta
+class Statement(metaclass=PoolMeta):
     __name__ = 'account.statement'
     users = fields.Function(fields.One2Many('res.user', None, 'Users'),
         'get_users', searcher='search_users')
@@ -58,8 +56,7 @@ class Statement:
         return [('id', 'in', query)]
 
 
-class Line:
-    __metaclass__ = PoolMeta
+class Line(metaclass=PoolMeta):
     __name__ = 'account.statement.line'
     sale = fields.Many2One('sale.sale', 'Sale', ondelete='RESTRICT')
 
