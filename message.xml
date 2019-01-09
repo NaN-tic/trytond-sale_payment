@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
+this repository contains the full copyright notices and license terms. -->
+<tryton>
+    <data group="1">
+        <record model="ir.message" id="not_customer_invoice">
+            <field name="text">A customer invoice/refund from sale device (%(reference)s) has not been created.</field>
+        </record>
+        <record model="ir.message" id="not_sale_device">
+            <field name="text">You have not defined a sale device for your user.</field>
+        </record>
+        <record model="ir.message" id="not_draft_statement">
+            <field name="text">A draft statement for "%(journal)s" payments has not been created.</field>
+        </record>
+        <record model="ir.message" id="party_without_account_receivable">
+            <field name="text">Party %(party)s has no any account receivable defined. Please, assign one.</field>
+        </record>
+        <record model="ir.message" id="open_statement">
+            <field name="text">Statement %(journal)s opened.</field>
+        </record>
+        <record model="ir.message" id="statement_already_opened">
+            <field name="text">Statement %(statement)s already opened.</field>
+        </record>
+        <record model="ir.message" id="user_without_device">
+            <field name="text">User %(user)s has not any device assigned yet.</field>
+        </record>
+        <record model="ir.message" id="close_statement">
+            <field name="text">Statement %(statement)s closed.</field>
+        </record>
+        <record model="ir.message" id="statement_already_closed">
+            <field name="text">Statement %(statement)s not found.</field>
+        </record>
+    </data>
+</tryton>

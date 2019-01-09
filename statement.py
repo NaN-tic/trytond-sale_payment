@@ -6,6 +6,9 @@ from trytond.pool import Pool, PoolMeta
 from trytond.transaction import Transaction
 from trytond.wizard import Button, StateTransition, StateView, Wizard
 from decimal import Decimal
+from trytond.i18n import gettext
+from trytond.exceptions import UserError
+
 
 __all__ = ['Journal', 'Statement', 'Line', 'OpenStatementStart',
     'OpenStatementDone', 'OpenStatement', 'CloseStatementStart',
@@ -137,16 +140,6 @@ class OpenStatement(Wizard):
             Button('Done', 'end', 'tryton-ok', default=True),
             ])
 
-    @classmethod
-    def __setup__(cls):
-        super(OpenStatement, cls).__setup__()
-        cls._error_messages.update({
-            'open_statement': 'Statement %s opened. \n',
-            'statement_already_opened': 'Statement %s already opened. \n',
-            'user_without_device': 'User %s has not any device assigned yet.'
-                '\n',
-            })
-
     def default_done(self, fields):
         return {
             'result': self.result,
@@ -186,19 +179,16 @@ class OpenStatement(Wizard):
                         'end_balance': Decimal('0.0'),
                         }
                     vlist.append(values)
-                    result += self.raise_user_error('open_statement',
-                        error_args=(journal.rec_name,),
-                        raise_exception=False)
+                    result += gettext('sale_payment.open_statement',
+                        journal=journal.rec_name)
                 else:
-                    result += self.raise_user_error('statement_already_opened',
-                        error_args=(journal.rec_name,),
-                        raise_exception=False)
+                    result += gettext('sale_payment.statement_already_opened',
+                        journal=journal.rec_name)
             statements.extend(Statement.create(vlist))
             self.result = result
         else:
-            self.result = self.raise_user_error('user_without_device',
-                error_args=(user.rec_name,),
-                raise_exception=False)
+            self.result = gettext('sale_payment.user_without_device',
+                user=user.rec_name)
         return 'done'
 
 
@@ -226,17 +216,6 @@ class CloseStatement(Wizard):
         'sale_payment.close_statement_done', [
             Button('Done', 'end', 'tryton-ok', default=True),
             ])
-
-    @classmethod
-    def __setup__(cls):
-        super(CloseStatement, cls).__setup__()
-        cls._error_messages.update({
-            'close_statement': 'Statement %s closed. \n',
-            'statement_already_closed': 'Statement %s already closed. \n',
-            'not_statement_found': 'Statement %s not found. \n',
-            'user_without_device': 'User %s has not any device assigned yet.'
-                '\n',
-            })
 
     def default_done(self, fields):
         return {
@@ -271,22 +250,18 @@ class CloseStatement(Wizard):
                     statement.end_balance = end_balance
                     statement.save()
                     statements.append(statement)
-                    result += self.raise_user_error('close_statement',
-                        error_args=(statement.rec_name,),
-                        raise_exception=False)
+                    result += gettext('sale_payment.close_statement',
+                            statement=statement.rec_name)
                 elif statement:
-                    result += self.raise_user_error('statement_already_closed',
-                        error_args=(statement.rec_name,),
-                        raise_exception=False)
+                    result += gettext('sale_payment.statement_already_closed',
+                        statement=statement.rec_name)
                 else:
-                    result += self.raise_user_error('not_statement_found',
-                        error_args=(journal.rec_name,),
-                        raise_exception=False)
+                    result += gettext('sale_payment.not_statement_found',
+                        journal=journal.rec_name)
             if statements:
                 Statement.validate_statement(statements)
             self.result = result
         else:
-            self.result = self.raise_user_error('user_without_device',
-                error_args=(user.rec_name,),
-                raise_exception=False)
+            self.result = gettext('sale_payment.user_without_device',
+                user=user.rec_name)
         return 'done'

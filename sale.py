@@ -12,6 +12,8 @@ from trytond.pool import PoolMeta, Pool
 from trytond.pyson import Bool, Eval, Not
 from trytond.transaction import Transaction
 from trytond.wizard import Wizard, StateView, StateTransition, Button
+from trytond.i18n import gettext
+from trytond.exceptions import UserError
 
 
 __all__ = ['Sale', 'SalePaymentForm', 'WizardSalePayment',
@@ -41,10 +43,6 @@ class Sale(metaclass=PoolMeta):
                     'readonly': Not(Bool(Eval('lines'))),
                     },
                 })
-        cls._error_messages.update({
-                'not_customer_invoice': ('A customer invoice/refund '
-                    'from sale device (%s) has not been created.'),
-                })
 
     @staticmethod
     def default_sale_device():
@@ -70,7 +68,9 @@ class Sale(metaclass=PoolMeta):
                 cls.process([sale])
 
             if not sale.invoices and sale.invoice_method == 'order':
-                cls.raise_user_error('not_customer_invoice', (sale.reference,))
+                raise UserError(gettext(
+                    'sale_payment.not_customer_invoice',
+                        reference=sale.reference))
 
             grouping = getattr(sale.party, 'sale_invoice_grouping_method',
                 False)
@@ -218,18 +218,6 @@ class WizardSalePayment(Wizard):
         ])
     pay_ = StateTransition()
 
-    @classmethod
-    def __setup__(cls):
-        super(WizardSalePayment, cls).__setup__()
-        cls._error_messages.update({
-                'not_sale_device': ('You have not defined a sale device for '
-                    'your user.'),
-                'not_draft_statement': ('A draft statement for "%s" payments '
-                    'has not been created.'),
-                'party_without_account_receivable': 'Party %s has no any '
-                    'account receivable defined. Please, assign one.',
-                })
-
     def default_start(self, fields):
         pool = Pool()
         Sale = pool.get('sale.sale')
@@ -238,7 +226,7 @@ class WizardSalePayment(Wizard):
         user = User(Transaction().user)
         sale_device = sale.sale_device or user.sale_device or False
         if user.id != 0 and not sale_device:
-            self.raise_user_error('not_sale_device')
+            raise UserError(gettext('sale_payment.not_sale_device'))
         return {
             'journal': sale_device.journal.id
                 if sale_device.journal else None,
@@ -262,7 +250,8 @@ class WizardSalePayment(Wizard):
                 ('state', '=', 'draft'),
                 ], order=[('date', 'DESC')])
         if not statements:
-            self.raise_user_error('not_draft_statement', (form.journal.name,))
+            raise UserError(gettext('sale_payment.not_draft_statement',
+                journal=form.journal.name))
 
         active_id = Transaction().context.get('active_id', False)
         sale = Sale(active_id)
@@ -270,9 +259,12 @@ class WizardSalePayment(Wizard):
             Sale.set_number([sale])
 
         account = (sale.party.account_receivable
-            and sale.party.account_receivable.id
-            or self.raise_user_error('party_without_account_receivable',
-                error_args=(sale.party.name,)))
+            and sale.party.account_receivable.id)
+
+        if not account:
+            raise UserError(gettext(
+                'sale_payment.party_without_account_receivable',
+                    party=sale.party.name))
 
         if form.payment_amount:
             payment = StatementLine(
