@@ -127,10 +127,13 @@ class Sale(metaclass=PoolMeta):
 
     @classmethod
     def get_residual_amount(cls, sales, names):
-        return {
-            n: {s.id: s.total_amount - s.paid_amount for s in sales}
-            for n in names
-            }
+        result = {n: {s.id: Decimal(0) for s in sales} for n in names}
+        for name in names:
+            for sale in sales:
+                if sale.invoice_state != 'none':
+                    result[name][sale.id] = sale.total_amount - sale.paid_amount
+        return result
+
 
     @classmethod
     def search_residual_amount(cls, name, clause):
