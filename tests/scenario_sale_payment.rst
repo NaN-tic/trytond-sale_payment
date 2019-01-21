@@ -234,6 +234,8 @@ Partially pay the sale::
     Decimal('22.00')
     >>> pay_sale.form.payment_amount = Decimal('12.00')
     >>> pay_sale.execute('pay_')
+    >>> sale.invoice_state = 'waiting'
+    >>> sale.save()
     >>> statment_line, = payment_statement.lines
     >>> statment_line.amount
     Decimal('12.00')
@@ -244,6 +246,8 @@ Partially pay the sale::
     >>> sale.reload()
     >>> sale.paid_amount
     Decimal('12.00')
+    >>> sale.invoice_state != 'none'
+    True
     >>> sale.residual_amount
     Decimal('10.00')
     >>> len(sale.shipments), len(sale.invoices), len(sale.payments)
