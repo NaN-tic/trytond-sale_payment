@@ -229,7 +229,7 @@ Partially pay the sale::
     >>> sale.reload()
     >>> sale.paid_amount
     Decimal('12.00')
-    >>> sale.invoice_state != 'none'
+    >>> sale.invoice_state != None
     True
     >>> sale.residual_amount
     Decimal('10.00')
