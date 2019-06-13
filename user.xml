@@ -6,13 +6,11 @@ copyright notices and license terms. -->
     <data>
         <record model="ir.ui.view" id="user_view_form">
             <field name="model">res.user</field>
-            <field name="type" eval="None"/>
             <field name="inherit" ref="res.user_view_form"/>
             <field name="name">user_form</field>
         </record>
         <record model="ir.ui.view" id="user_view_form_preferences">
             <field name="model">res.user</field>
-            <field name="type" eval="None"/>
             <field name="inherit" ref="res.user_view_form_preferences"/>
             <field name="name">user_form_preferences</field>
         </record>
