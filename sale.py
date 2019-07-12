@@ -126,53 +126,36 @@ class Sale(metaclass=PoolMeta):
         return result
 
     @classmethod
-    def get_residual_amount(cls, sales, names):
-        return {n: {s.id: s.total_amount - s.paid_amount if s.state != 'cancel'
-                    else Decimal(0) for s in sales} for n in names}
+    def get_residual_amount(cls, sales, name):
+        return {s.id: s.total_amount - s.paid_amount if s.state in (
+                'confirmed', 'processing', 'done') else
+                Decimal(0) for s in sales}
 
     @classmethod
     def search_residual_amount(cls, name, clause):
         pool = Pool()
         Sale = pool.get('sale.sale')
-        SaleLine = pool.get('sale.line')
-        Invoice = pool.get('account.invoice')
-        InvoiceLine = pool.get('account.invoice.line')
         StatementLine = pool.get('account.statement.line')
 
         sale = Sale.__table__()
-        saleline = SaleLine.__table__()
-        invoice = Invoice.__table__()
-        invoiceline = InvoiceLine.__table__()
-        line = StatementLine.__table__()
+        payline = StatementLine.__table__()
+        Operator = fields.SQL_OPERATORS[clause[1]]
+        value = clause[2]
 
-        grouped = sale.join(
-            line,
+        query = sale.join(
+            payline,
             type_='LEFT',
-            condition=(sale.id == line.sale)
+            condition=(sale.id == payline.sale)
             ).select(
                 sale.id,
                 where=((sale.total_amount_cache != None) &
                     (sale.state.in_(['confirmed', 'processing', 'done']))),
                 group_by=(sale.id),
                 having=(
-                    Sum(Coalesce(line.amount, 0)) < sale.total_amount_cache))
-
-        query = grouped.join(
-                saleline,
-                condition=(saleline.sale == grouped.id)
-            ).join(
-                invoiceline,
-                condition=(Cast(Substring(invoiceline.origin,
-                        Position(',', invoiceline.origin) + Literal(1)),
-                    SaleLine.id.sql_type().base) == saleline.id)
-            ).join(
-                invoice,
-                condition=(invoice.id == invoiceline.invoice)
-            ).select(
-                grouped.id,
-                where=(invoice.state == 'posted'),
-                group_by=(grouped.id)
-            )
+                    (Sum(Coalesce(payline.amount, 0)) < sale.total_amount_cache)
+                & Operator(sale.total_amount_cache -
+                    Sum(Coalesce(payline.amount, 0)), value)
+                ))
 
         return [('id', 'in', query)]
 
