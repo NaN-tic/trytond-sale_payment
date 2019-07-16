@@ -127,9 +127,8 @@ class Sale(metaclass=PoolMeta):
 
     @classmethod
     def get_residual_amount(cls, sales, name):
-        return {s.id: s.total_amount - s.paid_amount if s.state in (
-                'confirmed', 'processing', 'done') else
-                Decimal(0) for s in sales}
+        return {s.id: s.total_amount - s.paid_amount if s.state != 'cancel'
+            else Decimal(0) for s in sales}
 
     @classmethod
     def search_residual_amount(cls, name, clause):
@@ -149,7 +148,12 @@ class Sale(metaclass=PoolMeta):
             ).select(
                 sale.id,
                 where=((sale.total_amount_cache != None) &
-                    (sale.state.in_(['confirmed', 'processing', 'done']))),
+                    (sale.state.in_([
+                        'draft',
+                        'quotation',
+                        'confirmed',
+                        'processing',
+                        'done']))),
                 group_by=(sale.id),
                 having=(
                     (Sum(Coalesce(payline.amount, 0)) < sale.total_amount_cache)
