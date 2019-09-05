@@ -7,7 +7,7 @@ copyright notices and license terms. -->
         <group col="10" colspan="2" id="buttons"/>
     </xpath>
     <xpath expr="/form/notebook/page[@id='sale']/group/group/button[@name='process']" position="after">
-        <button name="wizard_sale_payment" icon="tryton-go-next"/>
+        <button name="wizard_sale_payment" icon="tryton-forward"/>
     </xpath>
     <xpath expr="/form/notebook/page[@id='other']" position="after">
         <page string="Payments" col="4" id="payments">
