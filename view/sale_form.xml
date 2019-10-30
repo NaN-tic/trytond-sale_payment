@@ -3,10 +3,10 @@
 The COPYRIGHT file at the top level of this repository contains the full
 copyright notices and license terms. -->
 <data>
-    <xpath expr="/form/notebook/page[@id='sale']/group/group[@id='buttons']" position="replace_attributes">
+    <xpath expr="/form/group[@id='buttons']" position="replace_attributes">
         <group col="10" colspan="2" id="buttons"/>
     </xpath>
-    <xpath expr="/form/notebook/page[@id='sale']/group/group/button[@name='process']" position="after">
+    <xpath expr="/form/group/button[@name='process']" position="after">
         <button name="wizard_sale_payment" icon="tryton-forward"/>
     </xpath>
     <xpath expr="/form/notebook/page[@id='other']" position="after">
