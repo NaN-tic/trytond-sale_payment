@@ -27,8 +27,7 @@ class User(metaclass=PoolMeta):
 
     @classmethod
     def __register__(cls, module_name):
-        TableHandler = backend.get('TableHandler')
-        table = TableHandler(cls, module_name)
+        table = backend.TableHandler(cls, module_name)
 
         # Migrate from sale_pos 3.0
         old_column = 'pos_device'
