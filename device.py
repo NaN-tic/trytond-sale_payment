@@ -30,11 +30,10 @@ class SaleDevice(ModelSQL, ModelView):
 
     @classmethod
     def __register__(cls, module_name):
-        TableHandler = backend.get('TableHandler')
 
         old_table = 'sale_pos_device'
-        if TableHandler.table_exist(old_table):
-            TableHandler.table_rename(old_table, cls._table)
+        if backend.TableHandler.table_exist(old_table):
+            backend.TableHandler.table_rename(old_table, cls._table)
 
         super(SaleDevice, cls).__register__(module_name)
 
@@ -61,12 +60,11 @@ class SaleDeviceStatementJournal(ModelSQL):
 
     @classmethod
     def __register__(cls, module_name):
-        TableHandler = backend.get('TableHandler')
-        table = TableHandler(cls, module_name)
+        table = backend.TableHandler(cls, module_name)
 
         old_table = 'sale_pos_device_account_statement_journal'
-        if TableHandler.table_exist(old_table):
-            TableHandler.table_rename(old_table, cls._table)
+        if backend.TableHandler.table_exist(old_table):
+            backend.TableHandler.table_rename(old_table, cls._table)
 
         old_column = 'pos_device'
         new_column = 'device'
