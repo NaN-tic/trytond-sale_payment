@@ -7,7 +7,6 @@ from trytond.transaction import Transaction
 from trytond.wizard import Button, StateTransition, StateView, Wizard
 from decimal import Decimal
 from trytond.i18n import gettext
-from trytond.exceptions import UserError
 
 
 __all__ = ['Journal', 'Statement', 'Line', 'OpenStatementStart',
