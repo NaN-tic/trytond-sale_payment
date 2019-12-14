@@ -2,30 +2,30 @@
 # The COPYRIGHT file at the top level of this repository contains the full
 # copyright notices and license terms.
 from trytond.pool import Pool
-from .device import *
-from .sale import *
-from .statement import *
-from .user import *
+from . import device
+from . import sale
+from . import statement
+from . import user
 
 
 def register():
     Pool.register(
-        Journal,
-        Statement,
-        Line,
-        SaleDevice,
-        User,
-        SaleDeviceStatementJournal,
-        Sale,
-        SalePaymentForm,
-        OpenStatementStart,
-        OpenStatementDone,
-        CloseStatementStart,
-        CloseStatementDone,
+        statement.Journal,
+        statement.Statement,
+        statement.Line,
+        device.SaleDevice,
+        user.User,
+        device.SaleDeviceStatementJournal,
+        sale.Sale,
+        sale.SalePaymentForm,
+        statement.OpenStatementStart,
+        statement.OpenStatementDone,
+        statement.CloseStatementStart,
+        statement.CloseStatementDone,
         module='sale_payment', type_='model')
     Pool.register(
-        WizardSalePayment,
-        WizardSaleReconcile,
-        OpenStatement,
-        CloseStatement,
+        sale.WizardSalePayment,
+        sale.WizardSaleReconcile,
+        statement.OpenStatement,
+        statement.CloseStatement,
         module='sale_payment', type_='wizard')
