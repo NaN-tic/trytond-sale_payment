@@ -220,7 +220,7 @@ class WizardSalePayment(Wizard):
             'party': sale.party.id,
             }
 
-    def transition_pay_(self):
+    def get_statement_line(self, sale):
         pool = Pool()
         Date = pool.get('ir.date')
         Sale = pool.get('sale.sale')
@@ -236,8 +236,6 @@ class WizardSalePayment(Wizard):
             raise UserError(gettext('sale_payment.not_draft_statement',
                 journal=form.journal.name))
 
-        active_id = Transaction().context.get('active_id', False)
-        sale = Sale(active_id)
         if not sale.number:
             Sale.set_number([sale])
 
@@ -250,16 +248,25 @@ class WizardSalePayment(Wizard):
                     party=sale.party.name))
 
         if form.payment_amount:
-            payment = StatementLine(
+            return StatementLine(
                 statement=statements[0].id,
                 date=Date.today(),
                 amount=form.payment_amount,
                 party=sale.party.id,
                 account=account,
                 description=sale.number,
-                sale=active_id
+                sale=sale.id,
                 )
-            payment.save()
+
+    def transition_pay_(self):
+        Sale = Pool().get('sale.sale')
+
+        active_id = Transaction().context.get('active_id', False)
+        sale = Sale(active_id)
+
+        line = self.get_statement_line(sale)
+        if line:
+            line.save()
 
         if sale.total_amount != sale.paid_amount:
             return 'start'
