@@ -249,13 +249,13 @@ class WizardSalePayment(Wizard):
 
         if form.payment_amount:
             return StatementLine(
-                statement=statements[0].id,
+                statement=statements[0],
                 date=Date.today(),
                 amount=form.payment_amount,
-                party=sale.party.id,
+                party=sale.party,
                 account=account,
                 description=sale.number,
-                sale=sale.id,
+                sale=sale,
                 )
 
     def transition_pay_(self):
