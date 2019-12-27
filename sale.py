@@ -239,8 +239,8 @@ class WizardSalePayment(Wizard):
         if not sale.number:
             Sale.set_number([sale])
 
-        account = (sale.party.account_receivable
-            and sale.party.account_receivable.id)
+        with Transaction().set_context(date=Date.today()):
+            account = sale.party.account_receivable_used
 
         if not account:
             raise UserError(gettext(
