@@ -20,7 +20,7 @@ Imports::
 
 Install sale::
 
-    >>> config = activate_modules('sale_payment')
+    >>> config = activate_modules(['party', 'sale_payment'])
 
 Create company::
 

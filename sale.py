@@ -48,12 +48,21 @@ class Sale(metaclass=PoolMeta):
         user = User(Transaction().user)
         return user.sale_device and user.sale_device.id or None
 
+    def set_values_to_invoice(self, invoice):
+        pool = Pool()
+        Date = pool.get('ir.date')
+        today = Date.today()
+        if not getattr(invoice, 'invoice_date', False):
+            invoice.invoice_date = today
+        if not getattr(invoice, 'accounting_date', False):
+            invoice.accounting_date = today
+        invoice.description = self.reference
+
     @classmethod
     def workflow_to_end(cls, sales):
         pool = Pool()
         Invoice = pool.get('account.invoice')
         StatementLine = pool.get('account.statement.line')
-        Date = pool.get('ir.date')
 
         invoices = []
         to_post = set()
@@ -76,11 +85,7 @@ class Sale(metaclass=PoolMeta):
                 for invoice in sale.invoices:
                     if not invoice.state == 'draft':
                         continue
-                    if not getattr(invoice, 'invoice_date', False):
-                        invoice.invoice_date = Date.today()
-                    if not getattr(invoice, 'accounting_date', False):
-                        invoice.accounting_date = Date.today()
-                    invoice.description = sale.reference
+                    sale.set_values_to_invoice(invoice)
                     invoices.extend(([invoice], invoice._save_values))
                     to_post.add(invoice)
 
