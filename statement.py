@@ -166,7 +166,7 @@ class OpenStatement(Wizard):
                 for s in statements
                 }
             vlist = []
-            result = ''
+            results = []
             for journal in device.journals:
                 if journal not in journals_of_draft_statements:
                     values = {
@@ -178,13 +178,13 @@ class OpenStatement(Wizard):
                         'end_balance': Decimal('0.0'),
                         }
                     vlist.append(values)
-                    result += gettext('sale_payment.open_statement',
-                        journal=journal.rec_name)
+                    results.append(gettext('sale_payment.open_statement',
+                        journal=journal.rec_name))
                 else:
-                    result += gettext('sale_payment.statement_already_opened',
-                        journal=journal.rec_name)
+                    results.append(gettext('sale_payment.statement_already_opened',
+                        statement=journal.rec_name))
             statements.extend(Statement.create(vlist))
-            self.result = result
+            self.result = '\n'.join(results)
         else:
             self.result = gettext('sale_payment.user_without_device',
                 user=user.rec_name)
@@ -238,7 +238,7 @@ class CloseStatement(Wizard):
                         ('create_date', 'ASC'),
                         ])}
 
-            result = ''
+            results = []
             statements = []
             for journal in device.journals:
                 statement = draft_statements.get(journal)
@@ -249,17 +249,17 @@ class CloseStatement(Wizard):
                     statement.end_balance = end_balance
                     statement.save()
                     statements.append(statement)
-                    result += gettext('sale_payment.close_statement',
-                            statement=statement.rec_name)
+                    results.append(gettext('sale_payment.close_statement',
+                            statement=statement.rec_name))
                 elif statement:
-                    result += gettext('sale_payment.statement_already_closed',
-                        statement=statement.rec_name)
+                    results.append(gettext('sale_payment.statement_already_closed',
+                        statement=statement.rec_name))
                 else:
-                    result += gettext('sale_payment.not_statement_found',
-                        journal=journal.rec_name)
+                    results.append(gettext('sale_payment.not_statement_found',
+                        journal=journal.rec_name))
             if statements:
                 Statement.validate_statement(statements)
-            self.result = result
+            self.result = '\n'.join(results)
         else:
             self.result = gettext('sale_payment.user_without_device',
                 user=user.rec_name)

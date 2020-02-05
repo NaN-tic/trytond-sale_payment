@@ -30,5 +30,8 @@ this repository contains the full copyright notices and license terms. -->
         <record model="ir.message" id="statement_already_closed">
             <field name="text">Statement %(statement)s not found.</field>
         </record>
+        <record model="ir.message" id="not_statement_found">
+            <field name="text">Not found statement related to %(journal)s journal.</field>
+        </record>
     </data>
 </tryton>
