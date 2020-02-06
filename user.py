@@ -38,3 +38,7 @@ class User(metaclass=PoolMeta):
             table.column_rename(old_column, new_column)
 
         super(User, cls).__register__(module_name)
+
+    def on_change_company(self):
+        super().on_change_company()
+        self.sale_device = None
