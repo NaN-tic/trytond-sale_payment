@@ -48,7 +48,7 @@ class Sale(metaclass=PoolMeta):
         user = User(Transaction().user)
         return user.sale_device and user.sale_device.id or None
 
-    def set_values_to_invoice(self, invoice):
+    def set_basic_values_to_invoice(self, invoice):
         pool = Pool()
         Date = pool.get('ir.date')
         today = Date.today()
@@ -59,13 +59,32 @@ class Sale(metaclass=PoolMeta):
         invoice.description = self.reference
 
     @classmethod
-    def workflow_to_end(cls, sales):
+    def set_invoices_to_be_posted(cls, sales):
         pool = Pool()
         Invoice = pool.get('account.invoice')
-        StatementLine = pool.get('account.statement.line')
-
         invoices = []
         to_post = set()
+        for sale in sales:
+            grouping = getattr(sale.party, 'sale_invoice_grouping_method',
+                False)
+            if getattr(sale, 'invoices', None) and not grouping:
+                for invoice in sale.invoices:
+                    if not invoice.state == 'draft':
+                        continue
+                    sale.set_basic_values_to_invoice(invoice)
+                    invoices.extend(([invoice], invoice._save_values))
+                    to_post.add(invoice)
+
+        if to_post:
+            Invoice.write(*invoices)
+            return list(to_post)
+
+    @classmethod
+    def workflow_to_end(cls, sales):
+        pool = Pool()
+        StatementLine = pool.get('account.statement.line')
+        Invoice = pool.get('account.invoice')
+
         for sale in sales:
             if sale.state == 'draft':
                 cls.quote([sale])
@@ -79,36 +98,27 @@ class Sale(metaclass=PoolMeta):
                     'sale_payment.not_customer_invoice',
                         reference=sale.reference))
 
-            grouping = getattr(sale.party, 'sale_invoice_grouping_method',
-                False)
-            if sale.invoices and not grouping:
-                for invoice in sale.invoices:
-                    if not invoice.state == 'draft':
-                        continue
-                    sale.set_values_to_invoice(invoice)
-                    invoices.extend(([invoice], invoice._save_values))
-                    to_post.add(invoice)
-
+        to_post = cls.set_invoices_to_be_posted(sales)
         if to_post:
-            Invoice.write(*invoices)
-            Invoice.post(list(to_post))
+            Invoice.post(to_post)
 
         to_write = []
         to_do = []
         for sale in sales:
-            for payment in sale.payments:
-                invoices = [invoice for invoice in sale.invoices
-                    if invoice and invoice.state == 'posted']
-                if not invoices:
-                    continue
-                payment.invoice = invoices[0]
-                # Because of account_invoice_party_without_vat module
-                # could be installed, invoice party may be different of
-                # payment party if payment party has not any vat
-                # and both parties must be the same
-                if payment.party != invoice.party:
-                    payment.party = invoice.party
-                to_write.extend(([payment], payment._save_values))
+            posted_invoice = None
+            for invoice in sale.invoices:
+                if invoice.state == 'posted':
+                    posted_invoice = invoice
+                    break
+            if posted_invoice:
+                for payment in sale.payments:
+                    # Because of account_invoice_party_without_vat module
+                    # could be installed, invoice party may be different of
+                    # payment party if payment party has not any vat
+                    # and both parties must be the same
+                    if payment.party != invoice.party:
+                        payment.party = invoice.party
+                    to_write.extend(([payment], payment._save_values))
 
             if sale.is_done():
                 to_do.append(sale)
