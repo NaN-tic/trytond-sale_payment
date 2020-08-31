@@ -140,7 +140,7 @@ class Sale(metaclass=PoolMeta):
 
     @classmethod
     def get_residual_amount(cls, sales, name):
-        return {s.id: s.total_amount - s.paid_amount if s.state != 'cancel'
+        return {s.id: s.total_amount - s.paid_amount if s.state != 'cancelled'
             else Decimal(0) for s in sales}
 
     @classmethod
