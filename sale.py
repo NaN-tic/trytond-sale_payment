@@ -102,7 +102,7 @@ class Sale(metaclass=PoolMeta):
         if to_post:
             Invoice.post(to_post)
 
-        to_write = []
+        to_save = []
         to_do = []
         for sale in sales:
             posted_invoice = None
@@ -118,13 +118,13 @@ class Sale(metaclass=PoolMeta):
                     # and both parties must be the same
                     if payment.party != invoice.party:
                         payment.party = invoice.party
-                    to_write.extend(([payment], payment._save_values))
+                    payment.invoice = posted_invoice
+                    to_save.append(payment)
 
             if sale.is_done():
                 to_do.append(sale)
 
-        if to_write:
-            StatementLine.write(*to_write)
+        StatementLine.save(to_save)
 
         if to_do:
             cls.do(to_do)
