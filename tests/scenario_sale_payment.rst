@@ -106,7 +106,7 @@ Create a shop::
     >>> shop.warehouse = warehouse
     >>> shop.sale_shipment_method = 'order'
     >>> shop.sale_invoice_method = 'order'
-    >>> sequence, = Sequence.find([('code', '=', 'sale.sale')])
+    >>> sequence, = Sequence.find([('name', '=', 'Sale')])
     >>> shop.sale_sequence = sequence
     >>> shop.payment_term = payment_term
     >>> shop.price_list = price_list
@@ -116,8 +116,10 @@ Create journals::
 
     >>> StatementJournal = Model.get('account.statement.journal')
     >>> Journal = Model.get('account.journal')
-    >>> sequence = Sequence(name='Satement',
-    ...     code='account.journal',
+    >>> SequenceType = Model.get('ir.sequence.type')
+    >>> sequence_type, = SequenceType.find([('name', '=', 'Account Journal')])
+    >>> sequence = Sequence(name='Statement',
+    ...     sequence_type=sequence_type,
     ...     company=company,
     ... )
     >>> sequence.save()
