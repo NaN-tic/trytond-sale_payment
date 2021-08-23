@@ -201,9 +201,9 @@ msgctxt "field:sale.device.account.statement.journal,write_uid:"
 msgid "Write User"
 msgstr "Usuari modificació"
 
-msgctxt "field:sale.payment.form,currency_digits:"
-msgid "Currency Digits"
-msgstr "Decimals de la moneda"
+msgctxt "field:sale.payment.form,currency:"
+msgid "Currency"
+msgstr "Moneda"
 
 msgctxt "field:sale.payment.form,id:"
 msgid "ID"

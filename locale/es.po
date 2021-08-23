@@ -180,9 +180,9 @@ msgctxt "field:sale.device.account.statement.journal,write_uid:"
 msgid "Write User"
 msgstr "Usuario modificación"
 
-msgctxt "field:sale.payment.form,currency_digits:"
-msgid "Currency Digits"
-msgstr "Dígitos moneda"
+msgctxt "field:sale.payment.form,currency:"
+msgid "Currency"
+msgstr "Moneda"
 
 msgctxt "field:sale.payment.form,id:"
 msgid "ID"
