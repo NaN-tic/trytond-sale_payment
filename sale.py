@@ -12,6 +12,7 @@ from trytond.transaction import Transaction
 from trytond.wizard import Wizard, StateView, StateTransition, Button
 from trytond.i18n import gettext
 from trytond.exceptions import UserError
+from trytond.modules.currency.fields import Monetary
 
 
 __all__ = ['Sale', 'SalePaymentForm', 'WizardSalePayment',
@@ -199,11 +200,10 @@ class SalePaymentForm(ModelView):
         depends=['journals'], required=True)
     journals = fields.One2Many('account.statement.journal', None,
         'Allowed Statement Journals')
-    payment_amount = fields.Numeric('Payment amount', required=True,
-        digits=(16, Eval('currency_digits', 2)),
-        depends=['currency_digits'])
-    currency_digits = fields.Integer('Currency Digits')
+    payment_amount = Monetary('Payment amount', required=True,
+        currency='currency', digits='currency')
     party = fields.Many2One('party.party', 'Party', readonly=True)
+    currency = fields.Many2One('currency.currency', 'Currency', readonly=True)
 
 
 class WizardSalePayment(Wizard):
@@ -231,7 +231,7 @@ class WizardSalePayment(Wizard):
             'journals': [j.id for j in sale_device.journals],
             'payment_amount': sale.total_amount - sale.paid_amount
                 if sale.paid_amount else sale.total_amount,
-            'currency_digits': sale.currency_digits,
+            'currency': sale.currency,
             'party': sale.party.id,
             }
 
