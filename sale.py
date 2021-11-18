@@ -320,7 +320,7 @@ class WizardSaleReconcile(Wizard):
                     continue
                 for line in payment.move.lines:
                     if (not line.reconciliation and
-                            line.account.id == account.id):
+                            line.account == account):
                         lines.append(line)
                         amount += line.debit - line.credit
             if lines and amount == Decimal('0.0'):
