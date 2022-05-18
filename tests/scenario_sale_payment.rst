@@ -278,7 +278,7 @@ When the statement is closed the invoices are paid and sale is done::
     >>> payment_statement.reload()
     >>> payment_statement.state == 'validated'
     True
-    >>> all(l.invoice == invoice for l in payment_statement.lines)
+    >>> all(l.related_to == invoice for l in payment_statement.lines)
     True
     >>> payment_statement.balance
     Decimal('22.00')
