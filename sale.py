@@ -169,12 +169,9 @@ class Sale(metaclass=PoolMeta):
                         'processing',
                         'done']))),
                 group_by=(sale.id),
-                having=(
-                    (Sum(Coalesce(payline.amount, 0)) < sale.total_amount_cache)
-                & Operator(sale.total_amount_cache -
+                having=(Operator(sale.total_amount_cache -
                     Sum(Coalesce(payline.amount, 0)), value)
                 ))
-
         return [('id', 'in', query)]
 
     @classmethod
