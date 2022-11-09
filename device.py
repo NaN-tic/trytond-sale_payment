@@ -12,7 +12,7 @@ __all__ = ['SaleDevice', 'SaleDeviceStatementJournal']
 class SaleDevice(ModelSQL, ModelView):
     'Sale Device Configuration'
     __name__ = 'sale.device'
-    name = fields.Char('Device Name', required=True, select=True)
+    name = fields.Char('Device Name', required=True)
     shop = fields.Many2One('sale.shop', 'Shop', required=True)
     company = fields.Function(fields.Many2One('company.company', 'Company',),
         'get_company', searcher='search_company')
@@ -54,7 +54,7 @@ class SaleDeviceStatementJournal(ModelSQL):
     __name__ = 'sale.device.account.statement.journal'
     _table = 'sale_device_account_statement_journal'
     device = fields.Many2One('sale.device', 'Sale Device',
-            ondelete='CASCADE', select=True, required=True)
+            ondelete='CASCADE', required=True)
     journal = fields.Many2One('account.statement.journal', 'Statement Journal',
             ondelete='RESTRICT', required=True)
 
