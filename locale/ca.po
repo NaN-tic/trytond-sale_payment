@@ -2,85 +2,6 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
-msgctxt "error:account.statement.line:"
-msgid "Amount should be a positive or negative value."
-msgstr "L'import hauria de ser un valor positiu o negatiu."
-
-msgctxt "error:close.statement:"
-msgid "Statement %s already closed.\n"
-msgstr "Extracte %s ja tancat.\n"
-
-msgctxt "error:close.statement:"
-msgid "Statement %s already closed. \n"
-msgstr "Extracto %s ya cerrado.\n"
-
-msgctxt "error:close.statement:"
-msgid "Statement %s closed.\n"
-msgstr "Extracte %s tancat.\n"
-
-msgctxt "error:close.statement:"
-msgid "Statement %s closed. \n"
-msgstr "Extracte %s ja tancat.\n"
-
-msgctxt "error:close.statement:"
-msgid "Statement %s not found.\n"
-msgstr "Extracte %s no trobat.\n"
-
-msgctxt "error:close.statement:"
-msgid "Statement %s not found. \n"
-msgstr "Extracte %s no trobat.\n"
-
-msgctxt "error:close.statement:"
-msgid "User %s has not any device assigned yet.\n"
-msgstr "L'usuari %s no té cap terminal assignat encara.\n"
-
-msgctxt "error:open.statement:"
-msgid "Statement %s already opened.\n"
-msgstr "Extracte %s ja obert.\n"
-
-msgctxt "error:open.statement:"
-msgid "Statement %s already opened. \n"
-msgstr "Extracte %s ja obert.\n"
-
-msgctxt "error:open.statement:"
-msgid "Statement %s opened.\n"
-msgstr "Extracte %s obert.\n"
-
-msgctxt "error:open.statement:"
-msgid "Statement %s opened. \n"
-msgstr "Extracte %s obert.\n"
-
-msgctxt "error:open.statement:"
-msgid "User %s has not any device assigned yet.\n"
-msgstr "L'usuari %s no té cap terminal assignat encara.\n"
-
-msgctxt "error:res.user:"
-msgid "You can not have two users with the same login!"
-msgstr "No podeu tenir dos usuaris amb el mateix identificador d'entrada."
-
-msgctxt "error:sale.payment:"
-msgid "A draft statement for \"%s\" payments has not been created."
-msgstr "Un extracte esborrany per \"%s\" pagaments no s'ha creat."
-
-msgctxt "error:sale.payment:"
-msgid "Party %s has no any account receivable defined. Please, assign one."
-msgstr ""
-"El tercer %s no té definit cap compte a cobrar per defecte. Afegeix un "
-"compte a cobrar en el tercer."
-
-msgctxt "error:sale.payment:"
-msgid "You have not defined a sale device for your user."
-msgstr "No heu definit un terminal de venda per al vostre usuari."
-
-msgctxt "error:sale.sale:"
-msgid "A customer invoice/refund from sale device (%s) has not been created."
-msgstr ""
-"Una factura/devolució d'un terminal de venda (%s) no s'ha creat."
-
-msgctxt "error:sale.sale:"
-msgid "Go to user preferences and select a shop (\"%s\")"
-msgstr "Selecciona una botiga en les seves preferencies (\"%s\")."
-
 msgctxt "field:account.statement,users:"
 msgid "Users"
 msgstr "Usuaris"
@@ -93,29 +14,13 @@ msgctxt "field:account.statement.line,sale:"
 msgid "Sale"
 msgstr "Venda"
 
-msgctxt "field:close.statement.done,id:"
-msgid "ID"
-msgstr "ID"
-
 msgctxt "field:close.statement.done,result:"
 msgid "Result"
 msgstr "Resultat"
 
-msgctxt "field:close.statement.start,id:"
-msgid "ID"
-msgstr "ID"
-
-msgctxt "field:open.statement.done,id:"
-msgid "ID"
-msgstr "ID"
-
 msgctxt "field:open.statement.done,result:"
 msgid "Result"
 msgstr "Resultat"
-
-msgctxt "field:open.statement.start,id:"
-msgid "ID"
-msgstr "ID"
 
 msgctxt "field:res.user,sale_device:"
 msgid "Sale Device"
@@ -124,18 +29,6 @@ msgstr "Terminal de venda"
 msgctxt "field:sale.device,company:"
 msgid "Company"
 msgstr "Companyia"
-
-msgctxt "field:sale.device,create_date:"
-msgid "Create Date"
-msgstr "Data creació"
-
-msgctxt "field:sale.device,create_uid:"
-msgid "Create User"
-msgstr "Usuari creació"
-
-msgctxt "field:sale.device,id:"
-msgid "ID"
-msgstr "ID"
 
 msgctxt "field:sale.device,journal:"
 msgid "Default Journal"
@@ -149,10 +42,6 @@ msgctxt "field:sale.device,name:"
 msgid "Device Name"
 msgstr "Nom del terminal"
 
-msgctxt "field:sale.device,rec_name:"
-msgid "Name"
-msgstr "Nom"
-
 msgctxt "field:sale.device,shop:"
 msgid "Shop"
 msgstr "Botiga"
@@ -161,53 +50,17 @@ msgctxt "field:sale.device,users:"
 msgid "Users"
 msgstr "Usuaris"
 
-msgctxt "field:sale.device,write_date:"
-msgid "Write Date"
-msgstr "Data modificació"
-
-msgctxt "field:sale.device,write_uid:"
-msgid "Write User"
-msgstr "Usuari modificació"
-
-msgctxt "field:sale.device.account.statement.journal,create_date:"
-msgid "Create Date"
-msgstr "Data creació"
-
-msgctxt "field:sale.device.account.statement.journal,create_uid:"
-msgid "Create User"
-msgstr "Usuari creació"
-
 msgctxt "field:sale.device.account.statement.journal,device:"
 msgid "Sale Device"
 msgstr "Terminal de venda"
-
-msgctxt "field:sale.device.account.statement.journal,id:"
-msgid "ID"
-msgstr "ID"
 
 msgctxt "field:sale.device.account.statement.journal,journal:"
 msgid "Statement Journal"
 msgstr "Diari d'extracte"
 
-msgctxt "field:sale.device.account.statement.journal,rec_name:"
-msgid "Name"
-msgstr "Nom"
-
-msgctxt "field:sale.device.account.statement.journal,write_date:"
-msgid "Write Date"
-msgstr "Data modificació"
-
-msgctxt "field:sale.device.account.statement.journal,write_uid:"
-msgid "Write User"
-msgstr "Usuari modificació"
-
 msgctxt "field:sale.payment.form,currency:"
 msgid "Currency"
 msgstr "Moneda"
-
-msgctxt "field:sale.payment.form,id:"
-msgid "ID"
-msgstr "ID"
 
 msgctxt "field:sale.payment.form,journal:"
 msgid "Statement Journal"
@@ -248,10 +101,6 @@ msgstr "Adreça botiga"
 msgctxt "field:sale.shop,address:"
 msgid "Address"
 msgstr "Adreces"
-
-msgctxt "field:sale.shop,company_party:"
-msgid ""
-msgstr ""
 
 msgctxt "model:close.statement.done,name:"
 msgid "Close Statement"
@@ -313,6 +162,62 @@ msgctxt ""
 msgid "Validated"
 msgstr "Validat"
 
+msgctxt "model:ir.message,text:close_statement"
+msgid "Statement %(statement)s closed."
+msgstr "L'extracte %(statement)s està tancat."
+
+msgctxt "model:ir.message,text:not_customer_invoice"
+msgid ""
+"A customer invoice/refund from sale device (%(reference)s) has not been "
+"created."
+msgstr ""
+"Una factura/devolució d'un terminal de venda (%(reference)s) no s'ha creat."
+
+msgctxt "model:ir.message,text:not_draft_statement"
+msgid "A draft statement for \"%(journal)s\" payments has not been created."
+msgstr ""
+"Un extracte esborrany pels pagaments relacionat amb \"%(journal)s\" no s'ha "
+"creat."
+
+msgctxt "model:ir.message,text:not_sale_device"
+msgid "You have not defined a sale device for your user."
+msgstr "No heu definit un terminal de venda per al vostre usuari."
+
+msgctxt "model:ir.message,text:not_statement_found"
+msgid "Not found statement related to %(journal)s journal."
+msgstr "No s'ha trobat l'extracte relacionat amb \"%(journal)s\"."
+
+msgctxt "model:ir.message,text:open_statement"
+msgid "Statement %(journal)s opened."
+msgstr "L'extracte %(journal)s està obert."
+
+msgctxt "model:ir.message,text:party_without_account_receivable"
+msgid ""
+"Party %(party)s has no any account receivable defined. Please, assign one."
+msgstr ""
+"El tercer %(party)s no té definit cap compte a cobrar per defecte. Afegeix "
+"un compte a cobrar en el tercer."
+
+msgctxt "model:ir.message,text:statement_already_closed"
+msgid "Statement %(statement)s not found."
+msgstr "L'extracte \"%(statement)s\" no s'ha trobat."
+
+msgctxt "model:ir.message,text:statement_already_opened"
+msgid "Statement %(statement)s already opened."
+msgstr "L'extracte %(statement)s està obert."
+
+msgctxt "model:ir.message,text:user_without_device"
+msgid "User %(user)s has not any device assigned yet."
+msgstr "L'usuari %(user)s no té cap terminal assignat encara."
+
+msgctxt "model:ir.model.button,string:sale_payment_wizard_button"
+msgid "Pay"
+msgstr "Paga"
+
+msgctxt "model:ir.rule.group,name:rule_group_sale_device"
+msgid "User in company"
+msgstr "Usuari a les empreses"
+
 msgctxt "model:ir.sequence.strict,name:"
 msgid "Sale Pos"
 msgstr "Venta TPV"
@@ -362,18 +267,10 @@ msgid "Close Statements"
 msgstr "Tanca extractes"
 
 msgctxt "view:close.statement.start:"
-msgid "Close Statements"
-msgstr "Tanca extractes"
-
-msgctxt "view:close.statement.start:"
 msgid "You are going to close statements of your device."
 msgstr "Aneu a tancar els extractes del vostre terminal."
 
 msgctxt "view:open.statement.done:"
-msgid "Open Statements"
-msgstr "Obre extractes"
-
-msgctxt "view:open.statement.start:"
 msgid "Open Statements"
 msgstr "Obre extractes"
 
@@ -400,10 +297,6 @@ msgstr "Formulari de pagament de venda"
 msgctxt "view:sale.sale:"
 msgid "Payments"
 msgstr "Pagaments"
-
-msgctxt "view:sale.sale:"
-msgid "_Pay"
-msgstr "_Paga"
 
 msgctxt "wizard_button:close.statement,done,end:"
 msgid "Done"
