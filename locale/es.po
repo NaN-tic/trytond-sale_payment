@@ -2,64 +2,6 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
-msgctxt "error:account.statement.line:"
-msgid "Amount should be a positive or negative value."
-msgstr "El importe debe ser una cantidad positiva o negativa."
-
-msgctxt "error:close.statement:"
-msgid "Statement %s already closed. \n"
-msgstr "Extracto %s ya cerrado.\n"
-
-msgctxt "error:close.statement:"
-msgid "Statement %s closed. \n"
-msgstr "Extracto %s cerrado. \n"
-
-msgctxt "error:close.statement:"
-msgid "Statement %s not found. \n"
-msgstr "Extracto %s no encontrado.\n"
-
-msgctxt "error:close.statement:"
-msgid "User %s has not any device assigned yet.\n"
-msgstr "Usuario %s no tiene ningún terminal asignado todavía.\n"
-
-msgctxt "error:open.statement:"
-msgid "Statement %s already opened. \n"
-msgstr "Extracto %s ya abierto.\n"
-
-msgctxt "error:open.statement:"
-msgid "Statement %s opened. \n"
-msgstr "Extracto %s abierto.\n"
-
-msgctxt "error:open.statement:"
-msgid "User %s has not any device assigned yet.\n"
-msgstr "Usuario %s no tiene ningún terminal asignado todavía.\n"
-
-msgctxt "error:res.user:"
-msgid "You can not have two users with the same login!"
-msgstr "No puede tener dos usuarios con el mismo registro de entrada."
-
-msgctxt "error:sale.payment:"
-msgid "A draft statement for \"%s\" payments has not been created."
-msgstr "Un extracto borrador para \"%s\" pagos no se ha creado."
-
-msgctxt "error:sale.payment:"
-msgid "Party %s has no any account receivable defined. Please, assign one."
-msgstr ""
-"El tercero %s no dispone de ninguna cuenta a cobrar por defecto. Añade una "
-"cuenta a cobrar en el tercero."
-
-msgctxt "error:sale.payment:"
-msgid "You have not defined a sale device for your user."
-msgstr "No ha definido un terminal de venta para su usuario."
-
-msgctxt "error:sale.sale:"
-msgid "A customer invoice/refund from sale device (%s) has not been created."
-msgstr "Una factura/devolución del terminal de venta (%s) no se ha creado."
-
-msgctxt "error:sale.sale:"
-msgid "Go to user preferences and select a shop (\"%s\")"
-msgstr "Seleccione una tienda en sus preferencias (\"%s\")."
-
 msgctxt "field:account.statement,users:"
 msgid "Users"
 msgstr "Usuarios"
@@ -72,29 +14,13 @@ msgctxt "field:account.statement.line,sale:"
 msgid "Sale"
 msgstr "Venta"
 
-msgctxt "field:close.statement.done,id:"
-msgid "ID"
-msgstr "ID"
-
 msgctxt "field:close.statement.done,result:"
 msgid "Result"
 msgstr "Resultado"
 
-msgctxt "field:close.statement.start,id:"
-msgid "ID"
-msgstr "ID"
-
-msgctxt "field:open.statement.done,id:"
-msgid "ID"
-msgstr "ID"
-
 msgctxt "field:open.statement.done,result:"
 msgid "Result"
 msgstr "Resultado"
-
-msgctxt "field:open.statement.start,id:"
-msgid "ID"
-msgstr "ID"
 
 msgctxt "field:res.user,sale_device:"
 msgid "Sale Device"
@@ -103,18 +29,6 @@ msgstr "Terminal de venta"
 msgctxt "field:sale.device,company:"
 msgid "Company"
 msgstr "Empresa"
-
-msgctxt "field:sale.device,create_date:"
-msgid "Create Date"
-msgstr "Fecha creación"
-
-msgctxt "field:sale.device,create_uid:"
-msgid "Create User"
-msgstr "Usuario creación"
-
-msgctxt "field:sale.device,id:"
-msgid "ID"
-msgstr "ID"
 
 msgctxt "field:sale.device,journal:"
 msgid "Default Journal"
@@ -128,10 +42,6 @@ msgctxt "field:sale.device,name:"
 msgid "Device Name"
 msgstr "Nombre del terminal"
 
-msgctxt "field:sale.device,rec_name:"
-msgid "Name"
-msgstr "Nombre"
-
 msgctxt "field:sale.device,shop:"
 msgid "Shop"
 msgstr "Tienda"
@@ -140,53 +50,17 @@ msgctxt "field:sale.device,users:"
 msgid "Users"
 msgstr "Usuarios"
 
-msgctxt "field:sale.device,write_date:"
-msgid "Write Date"
-msgstr "Fecha modificación"
-
-msgctxt "field:sale.device,write_uid:"
-msgid "Write User"
-msgstr "Usuario modificación"
-
-msgctxt "field:sale.device.account.statement.journal,create_date:"
-msgid "Create Date"
-msgstr "Fecha creación"
-
-msgctxt "field:sale.device.account.statement.journal,create_uid:"
-msgid "Create User"
-msgstr "Usuario creación"
-
 msgctxt "field:sale.device.account.statement.journal,device:"
 msgid "Sale Device"
 msgstr "Terminal de venta"
-
-msgctxt "field:sale.device.account.statement.journal,id:"
-msgid "ID"
-msgstr "ID"
 
 msgctxt "field:sale.device.account.statement.journal,journal:"
 msgid "Statement Journal"
 msgstr "Diario de extracto"
 
-msgctxt "field:sale.device.account.statement.journal,rec_name:"
-msgid "Name"
-msgstr "Nombre"
-
-msgctxt "field:sale.device.account.statement.journal,write_date:"
-msgid "Write Date"
-msgstr "Fecha modificación"
-
-msgctxt "field:sale.device.account.statement.journal,write_uid:"
-msgid "Write User"
-msgstr "Usuario modificación"
-
 msgctxt "field:sale.payment.form,currency:"
 msgid "Currency"
 msgstr "Moneda"
-
-msgctxt "field:sale.payment.form,id:"
-msgid "ID"
-msgstr "ID"
 
 msgctxt "field:sale.payment.form,journal:"
 msgid "Statement Journal"
@@ -223,14 +97,6 @@ msgstr "Terminal de venta"
 msgctxt "field:sale.sale,shop_address:"
 msgid "Shop Address"
 msgstr "Dirección tienda"
-
-msgctxt "field:sale.shop,address:"
-msgid ""
-msgstr ""
-
-msgctxt "field:sale.shop,company_party:"
-msgid ""
-msgstr ""
 
 msgctxt "model:close.statement.done,name:"
 msgid "Close Statement"
@@ -292,6 +158,62 @@ msgctxt ""
 msgid "Validated"
 msgstr "Validado"
 
+msgctxt "model:ir.message,text:close_statement"
+msgid "Statement %(statement)s closed."
+msgstr "El extracto %(statement)s está cerrado."
+
+msgctxt "model:ir.message,text:not_customer_invoice"
+msgid ""
+"A customer invoice/refund from sale device (%(reference)s) has not been "
+"created."
+msgstr ""
+"Una factura/devolución del terminal de venta (%(reference)s) no se ha "
+"creado."
+
+msgctxt "model:ir.message,text:not_draft_statement"
+msgid "A draft statement for \"%(journal)s\" payments has not been created."
+msgstr "No se ha creado un extracto borrador para los pagos de \"%(journal)s\"."
+
+msgctxt "model:ir.message,text:not_sale_device"
+msgid "You have not defined a sale device for your user."
+msgstr "No ha definido un terminal de venta para su usuario."
+
+msgctxt "model:ir.message,text:not_statement_found"
+msgid "Not found statement related to %(journal)s journal."
+msgstr ""
+"No se ha encontrador un extracto relacionado con el diario %(journal)s."
+
+msgctxt "model:ir.message,text:open_statement"
+msgid "Statement %(journal)s opened."
+msgstr "El extracto %(statement)s está abierto."
+
+msgctxt "model:ir.message,text:party_without_account_receivable"
+msgid ""
+"Party %(party)s has no any account receivable defined. Please, assign one."
+msgstr ""
+"El tercero %(party)s no dispone de ninguna cuenta a cobrar por defecto. "
+"Añade una cuenta a cobrar en el tercero."
+
+msgctxt "model:ir.message,text:statement_already_closed"
+msgid "Statement %(statement)s not found."
+msgstr "No se ha encontrador el extracto %(statement)s."
+
+msgctxt "model:ir.message,text:statement_already_opened"
+msgid "Statement %(statement)s already opened."
+msgstr "El extracto %(statement)s está abierto."
+
+msgctxt "model:ir.message,text:user_without_device"
+msgid "User %(user)s has not any device assigned yet."
+msgstr "El usuario %(user)s no tiene ningún terminal asignado todavía."
+
+msgctxt "model:ir.model.button,string:sale_payment_wizard_button"
+msgid "Pay"
+msgstr "Pagar"
+
+msgctxt "model:ir.rule.group,name:rule_group_sale_device"
+msgid "User in company"
+msgstr "Usuario en las empresas"
+
 msgctxt "model:ir.sequence.strict,name:"
 msgid "Sale Pos"
 msgstr "Venta TPV"
@@ -341,18 +263,10 @@ msgid "Close Statements"
 msgstr "Cerrar extractos"
 
 msgctxt "view:close.statement.start:"
-msgid "Close Statements"
-msgstr "Cerrar extractos"
-
-msgctxt "view:close.statement.start:"
 msgid "You are going to close statements of your device."
 msgstr "Va ha cerrar los extractos de su terminal."
 
 msgctxt "view:open.statement.done:"
-msgid "Open Statements"
-msgstr "Abrir extractos"
-
-msgctxt "view:open.statement.start:"
 msgid "Open Statements"
 msgstr "Abrir extractos"
 
@@ -375,10 +289,6 @@ msgstr "Líneas"
 msgctxt "view:sale.payment.form:"
 msgid "Sale Payment Form"
 msgstr "Formulario de pago de venta"
-
-msgctxt "view:sale.sale:"
-msgid "Pay"
-msgstr "Pagar"
 
 msgctxt "view:sale.sale:"
 msgid "Payments"
