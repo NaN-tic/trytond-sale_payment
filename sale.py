@@ -228,7 +228,7 @@ class WizardSalePayment(Wizard):
             'journals': [j.id for j in sale_device.journals],
             'payment_amount': sale.total_amount - sale.paid_amount
                 if sale.paid_amount else sale.total_amount,
-            'currency': sale.currency,
+            'currency': sale.currency and sale.currency.id,
             'party': sale.party.id,
             }
 
