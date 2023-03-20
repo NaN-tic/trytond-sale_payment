@@ -243,6 +243,8 @@ class CloseStatement(Wizard):
             for journal in device.journals:
                 statement = draft_statements.get(journal)
                 if statement and statement.state == 'draft':
+                    if not statement.start_balance:
+                        statement.start_balance = Decimal(0)
                     end_balance = statement.start_balance
                     for line in statement.lines:
                         end_balance += line.amount
