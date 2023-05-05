@@ -176,6 +176,8 @@ class OpenStatement(Wizard):
                         'start_balance': start_balances.get(journal.id,
                             Decimal('0.0')),
                         'end_balance': Decimal('0.0'),
+                        'total_amount': Decimal('0.0'),
+                        'number_of_lines': Decimal('0.0'),
                         }
                     vlist.append(values)
                     results.append(gettext('sale_payment.open_statement',
