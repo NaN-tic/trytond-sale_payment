@@ -7,7 +7,7 @@ from sql.conditionals import Coalesce
 
 from trytond.model import ModelView, fields
 from trytond.pool import PoolMeta, Pool
-from trytond.pyson import Bool, Eval, Not
+from trytond.pyson import Bool, Eval, Not, Or, Equal
 from trytond.transaction import Transaction
 from trytond.wizard import Wizard, StateView, StateTransition, Button
 from trytond.i18n import gettext
@@ -37,11 +37,14 @@ class Sale(metaclass=PoolMeta):
     def __setup__(cls):
         super(Sale, cls).__setup__()
         cls._buttons.update({
-                'wizard_sale_payment': {
-                    'invisible': Eval('state') == 'done',
-                    'readonly': Not(Bool(Eval('lines'))),
-                    },
-                })
+            'wizard_sale_payment': {
+                'invisible': Eval('state') == 'done',
+                'readonly': Or(
+                    Not(Bool(Eval('lines'))),
+                    Equal(Eval('residual_amount', 0), 0)
+                ),
+            },
+        })
 
     @staticmethod
     def default_sale_device():
