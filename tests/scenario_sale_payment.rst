@@ -16,6 +16,7 @@ Imports::
     ...     create_chart, get_accounts, create_tax
     >>> from trytond.modules.account_invoice.tests.tools import \
     ...     set_fiscalyear_invoice_sequences, create_payment_term
+    >>> from trytond.modules.sale_shop.tests.tools import create_shop
     >>> today = datetime.date.today()
 
 Install sale::
@@ -89,33 +90,27 @@ Create payment term::
     >>> payment_term = create_payment_term()
     >>> payment_term.save()
 
-Create a shop::
+Create product price list::
+
+    >>> PriceList = Model.get('product.price_list')
+    >>> price_list = PriceList(name='Retail', price='list_price')
+    >>> price_list_line = price_list.lines.new()
+    >>> price_list_line.formula = 'unit_price'
+    >>> price_list.save()
+    >>> customer.sale_price_list = price_list
+    >>> customer.save()
+
+Create Sale Shop::
 
     >>> Shop = Model.get('sale.shop')
-    >>> Sequence = Model.get('ir.sequence')
-    >>> PriceList = Model.get('product.price_list')
-    >>> Location = Model.get('stock.location')
-    >>> warehouse, = Location.find([
-    ...         ('code', '=', 'WH'),
-    ...         ])
-    >>> price_list = PriceList()
-    >>> price_list.name = 'Default price list'
-    >>> price_list.save()
-    >>> shop = Shop()
-    >>> shop.name = 'Local shop'
-    >>> shop.warehouse = warehouse
-    >>> shop.sale_shipment_method = 'order'
-    >>> shop.sale_invoice_method = 'order'
-    >>> sequence, = Sequence.find([('name', '=', 'Sale')])
-    >>> shop.sale_sequence = sequence
-    >>> shop.payment_term = payment_term
-    >>> shop.price_list = price_list
+    >>> shop = create_shop(payment_term, price_list)
     >>> shop.save()
 
 Create journals::
 
     >>> StatementJournal = Model.get('account.statement.journal')
     >>> Journal = Model.get('account.journal')
+    >>> Sequence = Model.get('ir.sequence')
     >>> SequenceType = Model.get('ir.sequence.type')
     >>> sequence_type, = SequenceType.find([('name', '=', 'Account Journal')])
     >>> sequence = Sequence(name='Statement',
@@ -203,7 +198,7 @@ Open statements for current device::
     0
     >>> open_statment = Wizard('open.statement')
     >>> open_statment.execute('create_')
-    >>> open_statment.form.result == 'sale_payment.open_statement'
+    >>> open_statment.form.result == 'Statement Default opened.'
     True
     >>> payment_statement, = Statement.find([('state', '=', 'draft')])
 
