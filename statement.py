@@ -181,7 +181,7 @@ class OpenStatement(Wizard):
                         }
                     vlist.append(values)
                     results.append(gettext('sale_payment.open_statement',
-                        statement=journal.rec_name))
+                        journal=journal.rec_name))
                 else:
                     results.append(gettext('sale_payment.statement_already_opened',
                         statement=journal.rec_name))
