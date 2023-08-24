@@ -185,7 +185,7 @@ msgstr ""
 
 msgctxt "model:ir.message,text:open_statement"
 msgid "Statement %(journal)s opened."
-msgstr "El extracto %(statement)s está abierto."
+msgstr "El extracto %(journal)s está abierto."
 
 msgctxt "model:ir.message,text:party_without_account_receivable"
 msgid ""
