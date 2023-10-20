@@ -177,7 +177,6 @@ class Sale(metaclass=PoolMeta):
     def get_allow_to_pay(self, name):
         if ((self.state in ('cancelled', 'done'))
                 or (self.invoice_state == 'paid')
-                or (self.pending_amount == 0)
                 or (self.total_amount <= self.paid_amount)):
             return False
         return True
