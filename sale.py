@@ -285,7 +285,7 @@ class WizardSalePayment(Wizard):
 
         if sale.total_amount != sale.paid_amount:
             return 'start'
-        if sale.state != 'draft':
+        if sale.state not in ('draft', 'quotation', 'confirmed'):
             return 'end'
 
         sale.description = sale.reference
