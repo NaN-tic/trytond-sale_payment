@@ -2,21 +2,18 @@
 # The COPYRIGHT file at the top level of this repository contains the full
 # copyright notices and license terms.
 from decimal import Decimal
+from sql import For, Literal
 from sql.aggregate import Sum
 from sql.conditionals import Coalesce
 
 from trytond.model import ModelView, fields
 from trytond.pool import PoolMeta, Pool
-from trytond.pyson import Bool, Eval, Not, Or, Equal
+from trytond.pyson import Eval
 from trytond.transaction import Transaction
 from trytond.wizard import Wizard, StateView, StateTransition, Button
 from trytond.i18n import gettext
 from trytond.exceptions import UserError
 from trytond.modules.currency.fields import Monetary
-
-
-__all__ = ['Sale', 'SalePaymentForm', 'WizardSalePayment',
-    'WizardSaleReconcile']
 
 
 class Sale(metaclass=PoolMeta):
@@ -32,6 +29,8 @@ class Sale(metaclass=PoolMeta):
                 'readonly': Eval('state') != 'draft',
                 }
     )
+    allow_to_pay = fields.Function(fields.Boolean('Allow To Pay'),
+        'get_allow_to_pay')
 
     @classmethod
     def __setup__(cls):
@@ -39,10 +38,8 @@ class Sale(metaclass=PoolMeta):
         cls._buttons.update({
             'wizard_sale_payment': {
                 'invisible': Eval('state') == 'done',
-                'readonly': Or(
-                    Not(Bool(Eval('lines'))),
-                    Equal(Eval('residual_amount', 0), 0)
-                ),
+                'readonly': ~Eval('allow_to_pay', False),
+                'depends': ['state', 'allow_to_pay'],
             },
         })
 
@@ -177,6 +174,13 @@ class Sale(metaclass=PoolMeta):
                 ))
         return [('id', 'in', query)]
 
+    def get_allow_to_pay(self, name):
+        if ((self.state in ('cancelled', 'done'))
+                or (self.invoice_state == 'paid')
+                or (self.total_amount <= self.paid_amount)):
+            return False
+        return True
+
     @classmethod
     @ModelView.button_action('sale_payment.wizard_sale_payment')
     def wizard_sale_payment(cls, sales):
@@ -218,10 +222,11 @@ class WizardSalePayment(Wizard):
 
     def default_start(self, fields):
         pool = Pool()
-        Sale = pool.get('sale.sale')
         User = pool.get('res.user')
-        sale = Sale(Transaction().context['active_id'])
+
         user = User(Transaction().user)
+
+        sale = self.record
         sale_device = sale.sale_device or user.sale_device or False
         if user.id != 0 and not sale_device:
             raise UserError(gettext('sale_payment.not_sale_device'))
@@ -276,8 +281,24 @@ class WizardSalePayment(Wizard):
     def transition_pay_(self):
         Sale = Pool().get('sale.sale')
 
-        active_id = Transaction().context.get('active_id', False)
-        sale = Sale(active_id)
+        sale = self.record
+        if not sale.allow_to_pay:
+            return 'end'
+
+        transaction = Transaction()
+        database = transaction.database
+        connection = transaction.connection
+
+        if database.has_select_for():
+            table = Sale.__table__()
+            query = table.select(
+                Literal(1),
+                where=(table.id == sale.id),
+                for_=For('UPDATE', nowait=True))
+            with connection.cursor() as cursor:
+                cursor.execute(*query)
+        else:
+            Sale.lock()
 
         line = self.get_statement_line(sale)
         if line:
