@@ -176,7 +176,7 @@ class Sale(metaclass=PoolMeta):
 
     @fields.depends('state', 'invoice_state', 'lines', 'total_amount', 'paid_amount')
     def on_change_with_allow_to_pay(self, name=None):
-        if ((self.state in ('cancelled', 'done'))
+        if (self.state in ('cancelled', 'done')
                 or (self.invoice_state == 'paid')
                 or not self.lines
                 or (self.total_amount is not None
