@@ -30,7 +30,7 @@ class Sale(metaclass=PoolMeta):
                 }
     )
     allow_to_pay = fields.Function(fields.Boolean('Allow To Pay'),
-        'get_allow_to_pay')
+        'on_change_with_allow_to_pay')
 
     @classmethod
     def __setup__(cls):
@@ -38,7 +38,7 @@ class Sale(metaclass=PoolMeta):
         cls._buttons.update({
             'wizard_sale_payment': {
                 'invisible': Eval('state') == 'done',
-                'readonly': ~Eval('allow_to_pay', False),
+                'readonly': ~Eval('allow_to_pay', True),
                 'depends': ['state', 'allow_to_pay'],
             },
         })
@@ -174,10 +174,14 @@ class Sale(metaclass=PoolMeta):
                 ))
         return [('id', 'in', query)]
 
-    def get_allow_to_pay(self, name):
+    @fields.depends('state', 'invoice_state', 'lines', 'total_amount', 'paid_amount')
+    def on_change_with_allow_to_pay(self, name=None):
         if ((self.state in ('cancelled', 'done'))
                 or (self.invoice_state == 'paid')
-                or (self.total_amount <= self.paid_amount)):
+                or not self.lines
+                or (self.total_amount is not None
+                    and self.paid_amount is not None
+                    and (self.total_amount <= self.paid_amount))):
             return False
         return True
 
