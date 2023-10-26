@@ -176,12 +176,14 @@ class Sale(metaclass=PoolMeta):
 
     @fields.depends('state', 'invoice_state', 'lines', 'total_amount', 'paid_amount')
     def on_change_with_allow_to_pay(self, name=None):
+        # in case total_amount is < 0, the condition is  absolute value (abs)
         if (self.state in ('cancelled', 'done')
                 or (self.invoice_state == 'paid')
                 or not self.lines
                 or (self.total_amount is not None
                     and self.paid_amount is not None
-                    and (self.total_amount <= self.paid_amount))):
+                    and self.total_amount != 0.
+                    and (abs(self.total_amount) <= abs(self.paid_amount)))):
             return False
         return True
 
