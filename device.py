@@ -17,13 +17,13 @@ class SaleDevice(ModelSQL, ModelView):
     company = fields.Function(fields.Many2One('company.company', 'Company',),
         'get_company', searcher='search_company')
     journals = fields.Many2Many('sale.device.account.statement.journal',
-        'device', 'journal', 'Journals', depends=['company'],
+        'device', 'journal', 'Journals',
         domain=[
             ('company', '=', Eval('company')),
             ]
         )
     journal = fields.Many2One('account.statement.journal', "Default Journal",
-        ondelete='RESTRICT', depends=['journals'],
+        ondelete='RESTRICT',
         domain=[('id', 'in', Eval('journals', []))],
         )
     users = fields.One2Many('res.user', 'sale_device', 'Users')
