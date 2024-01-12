@@ -25,7 +25,7 @@ class Sale(metaclass=PoolMeta):
         'get_residual_amount', searcher='search_residual_amount')
     sale_device = fields.Many2One('sale.device', 'Sale Device',
             domain=[('shop', '=', Eval('shop'))],
-            depends=['shop'], states={
+            states={
                 'readonly': Eval('state') != 'draft',
                 }
     )
@@ -206,8 +206,7 @@ class SalePaymentForm(ModelView):
     journal = fields.Many2One('account.statement.journal', 'Statement Journal',
         domain=[
             ('id', 'in', Eval('journals', [])),
-            ],
-        depends=['journals'], required=True)
+            ], required=True)
     journals = fields.One2Many('account.statement.journal', None,
         'Allowed Statement Journals')
     payment_amount = Monetary('Payment amount', required=True,
