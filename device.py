@@ -19,7 +19,7 @@ class SaleDevice(ModelSQL, ModelView):
     journals = fields.Many2Many('sale.device.account.statement.journal',
         'device', 'journal', 'Journals',
         domain=[
-            ('company', '=', Eval('company')),
+            ('company', '=', Eval('company', -1)),
             ]
         )
     journal = fields.Many2One('account.statement.journal', "Default Journal",
