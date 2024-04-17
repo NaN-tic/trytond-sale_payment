@@ -99,7 +99,7 @@ copyright notices and license terms. -->
         </record>
 
         <record model="ir.model.access" id="access_sale_statement">
-            <field name="model" search="[('model', '=', 'account.statement')]"/>
+            <field name="model">account.statement</field>
             <field name="group" ref="sale.group_sale"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
@@ -107,7 +107,7 @@ copyright notices and license terms. -->
             <field name="perm_delete" eval="False"/>
         </record>
         <record model="ir.model.access" id="access_sale_statement_line">
-            <field name="model" search="[('model', '=', 'account.statement.line')]"/>
+            <field name="model">account.statement.line</field>
             <field name="group" ref="sale.group_sale"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
@@ -115,7 +115,7 @@ copyright notices and license terms. -->
             <field name="perm_delete" eval="False"/>
         </record>
         <record model="ir.model.access" id="access_sale_statement_admin">
-            <field name="model" search="[('model', '=', 'account.statement')]"/>
+            <field name="model">account.statement</field>
             <field name="group" ref="sale.group_sale_admin"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
@@ -123,7 +123,7 @@ copyright notices and license terms. -->
             <field name="perm_delete" eval="False"/>
         </record>
         <record model="ir.model.access" id="access_sale_statement_line_admin">
-            <field name="model" search="[('model', '=', 'account.statement.line')]"/>
+            <field name="model">account.statement.line</field>
             <field name="group" ref="sale.group_sale_admin"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
@@ -132,7 +132,7 @@ copyright notices and license terms. -->
         </record>
 
         <record model="ir.model.access" id="access_statement_account_move">
-            <field name="model" search="[('model', '=', 'account.move')]"/>
+            <field name="model">account.move</field>
             <field name="group" ref="account_statement.group_statement"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
@@ -140,7 +140,7 @@ copyright notices and license terms. -->
             <field name="perm_delete" eval="False"/>
         </record>
         <record model="ir.model.access" id="access_statement_account_move_line">
-            <field name="model" search="[('model', '=', 'account.move.line')]"/>
+            <field name="model">account.move.line</field>
             <field name="group" ref="account_statement.group_statement"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>

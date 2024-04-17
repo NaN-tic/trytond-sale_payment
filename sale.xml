@@ -46,7 +46,7 @@ copyright notices and license terms. -->
         <record model="ir.model.button" id="sale_payment_wizard_button">
             <field name="name">wizard_sale_payment</field>
             <field name="string">Pay</field>
-            <field name="model" search="[('model', '=', 'sale.sale')]"/>
+            <field name="model">sale.sale</field>
         </record>
     </data>
 </tryton>
