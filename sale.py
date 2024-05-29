@@ -335,7 +335,7 @@ class WizardSaleReconcile(Wizard):
         for sale in Sale.browse(Transaction().context['active_ids']):
             account = sale.party.account_receivable
             lines = []
-            amount = Decimal('0.0')
+            amount = Decimal(0)
             for invoice in sale.invoices:
                 for line in invoice.lines_to_pay:
                     if not line.reconciliation:
@@ -349,6 +349,6 @@ class WizardSaleReconcile(Wizard):
                             line.account == account):
                         lines.append(line)
                         amount += line.debit - line.credit
-            if lines and amount == Decimal('0.0'):
+            if lines and amount == Decimal(0):
                 Line.reconcile(lines)
         return 'end'

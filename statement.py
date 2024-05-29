@@ -108,7 +108,7 @@ class Line(metaclass=PoolMeta):
                             'payment_lines': [('add', [move_line.id])],
                             })
                     break
-            if reconcile_lines[1] == Decimal('0.0'):
+            if reconcile_lines[1] == Decimal(0):
                 lines = reconcile_lines[0] + [move_line]
                 MoveLine.reconcile(lines)
         return move
@@ -162,7 +162,7 @@ class OpenStatement(Wizard):
             journals_of_draft_statements = [s.journal for s in statements
                 if s.state == 'draft']
             start_balances = {
-                s.journal.id: s.end_balance or Decimal('0.0')
+                s.journal.id: s.end_balance or Decimal(0)
                 for s in statements
                 }
             vlist = []
@@ -174,9 +174,9 @@ class OpenStatement(Wizard):
                         'journal': journal.id,
                         'company': user.company.id,
                         'start_balance': start_balances.get(journal.id,
-                            Decimal('0.0')),
-                        'end_balance': Decimal('0.0'),
-                        'total_amount': Decimal('0.0'),
+                            Decimal(0)),
+                        'end_balance': Decimal(0),
+                        'total_amount': Decimal(0),
                         'number_of_lines': 0,
                         }
                     vlist.append(values)
