@@ -19,7 +19,7 @@ this repository contains the full copyright notices and license terms. -->
             <field name="text">Statement %(journal)s opened.</field>
         </record>
         <record model="ir.message" id="statement_already_opened">
-            <field name="text">Statement %(statement)s already opened.</field>
+            <field name="text">Statement %(statement)s already opened and no new ones have been created.</field>
         </record>
         <record model="ir.message" id="user_without_device">
             <field name="text">User %(user)s has not any device assigned yet.</field>
