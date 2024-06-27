@@ -78,6 +78,10 @@ msgctxt "field:sale.payment.form,payment_amount:"
 msgid "Payment amount"
 msgstr "Quantitat pagada"
 
+msgctxt "field:sale.sale,allow_to_pay:"
+msgid "Allow To Pay"
+msgstr "Permetre el pagament"
+
 msgctxt "field:sale.sale,paid_amount:"
 msgid "Paid Amount"
 msgstr "Pagat"
@@ -203,8 +207,9 @@ msgid "Statement %(statement)s not found."
 msgstr "L'extracte \"%(statement)s\" no s'ha trobat."
 
 msgctxt "model:ir.message,text:statement_already_opened"
-msgid "Statement %(statement)s already opened."
-msgstr "L'extracte %(statement)s està obert."
+msgid ""
+"Statement %(statement)s already opened and no new ones have been created."
+msgstr "L'extracte %(statement)s està obert i no s'ha creat cap de nou."
 
 msgctxt "model:ir.message,text:user_without_device"
 msgid "User %(user)s has not any device assigned yet."
