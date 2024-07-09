@@ -26,12 +26,13 @@ class Statement(metaclass=PoolMeta):
 
     @classmethod
     def get_users(cls, statements, names):
-        return {'users': {s.id: [u.id
-                    for j in s.journal
-                    for d in j.devices
-                    for u in d.users
-                    ]
-                } for s in statements}
+        users = {}
+        for s in statements:
+            users[s.id] = []
+            if s.journal:
+                for device in s.journal.devices:
+                    users[s.id] = [u.id for u in device.users]
+        return {'users': users}
 
     @classmethod
     def search_users(cls, name, clause):
