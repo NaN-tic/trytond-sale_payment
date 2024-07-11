@@ -68,6 +68,8 @@ class Sale(metaclass=PoolMeta):
         for sale in sales:
             grouping = getattr(sale.party, 'sale_invoice_grouping_method',
                 False)
+            if Transaction().context.get('skip_grouping', False):
+                grouping = None
             if getattr(sale, 'invoices', None) and not grouping:
                 for invoice in sale.invoices:
                     if not invoice.state == 'draft':
