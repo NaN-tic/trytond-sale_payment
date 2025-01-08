@@ -75,7 +75,7 @@ class Sale(metaclass=PoolMeta):
                     if not invoice.state == 'draft':
                         continue
                     sale.set_basic_values_to_invoice(invoice)
-                    invoices.extend(([invoice], invoice._save_values))
+                    invoices.extend(([invoice], invoice._save_values()))
                     to_post.add(invoice)
 
         if to_post:
