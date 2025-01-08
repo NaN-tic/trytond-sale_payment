@@ -24,7 +24,9 @@ class Sale(metaclass=PoolMeta):
     residual_amount = fields.Function(fields.Numeric('Residual Amount'),
         'get_residual_amount', searcher='search_residual_amount')
     sale_device = fields.Many2One('sale.device', 'Sale Device',
-            domain=[('shop', '=', Eval('shop'))],
+            domain=[
+                ('shop', '=', Eval('shop', -1)),
+            ],
             states={
                 'readonly': Eval('state') != 'draft',
                 }
