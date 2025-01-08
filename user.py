@@ -10,7 +10,9 @@ from trytond.pyson import Eval
 class User(metaclass=PoolMeta):
     __name__ = "res.user"
     sale_device = fields.Many2One('sale.device', 'Sale Device',
-            domain=[('shop', '=', Eval('shop'))])
+        domain=[
+            ('shop', '=', Eval('shop', -1)),
+            ])
 
     @classmethod
     def __setup__(cls):
