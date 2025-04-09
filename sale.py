@@ -105,7 +105,8 @@ class Sale(metaclass=PoolMeta):
 
         to_post = cls.set_invoices_to_be_posted(sales)
         if to_post:
-            Invoice.post(to_post)
+            with Transaction().set_context(_skip_warnings=True):
+                Invoice.post(to_post)
 
         to_save = []
         to_do = []
