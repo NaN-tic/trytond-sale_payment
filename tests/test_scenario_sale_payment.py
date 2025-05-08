@@ -103,19 +103,9 @@ class Test(unittest.TestCase):
         # Create journals
         StatementJournal = Model.get('account.statement.journal')
         Journal = Model.get('account.journal')
-        Sequence = Model.get('ir.sequence')
-        SequenceType = Model.get('ir.sequence.type')
-        sequence_type, = SequenceType.find([('name', '=', 'Account Journal')])
-        sequence = Sequence(
-            name='Statement',
-            sequence_type=sequence_type,
-            company=company,
-        )
-        sequence.save()
         account_journal = Journal(
             name='Statement',
             type='statement',
-            sequence=sequence,
         )
         account_journal.save()
         statement_journal = StatementJournal(
