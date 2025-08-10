@@ -21,7 +21,7 @@ class Journal(metaclass=PoolMeta):
 
 class Statement(metaclass=PoolMeta):
     __name__ = 'account.statement'
-    users = fields.Function(fields.Many2Many('res.user', None, 'Users'),
+    users = fields.Function(fields.Many2Many('res.user', None, None, 'Users'),
         'get_users', searcher='search_users')
 
     @classmethod
