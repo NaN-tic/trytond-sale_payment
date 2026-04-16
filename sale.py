@@ -8,7 +8,7 @@ from sql.conditionals import Coalesce
 
 from trytond.model import ModelView, fields
 from trytond.pool import PoolMeta, Pool
-from trytond.pyson import Eval
+from trytond.pyson import Bool, Eval
 from trytond.transaction import Transaction
 from trytond.wizard import Wizard, StateView, StateTransition, Button
 from trytond.i18n import gettext
@@ -29,6 +29,7 @@ class Sale(metaclass=PoolMeta):
             ],
             states={
                 'readonly': Eval('state') != 'draft',
+                'required': Bool(Eval('shop')),
                 }
     )
     allow_to_pay = fields.Function(fields.Boolean('Allow To Pay'),
