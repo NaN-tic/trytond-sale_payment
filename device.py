@@ -60,7 +60,7 @@ class SaleDeviceStatementJournal(ModelSQL):
 
     @classmethod
     def __register__(cls, module_name):
-        table = backend.TableHandler(cls, module_name)
+        table = cls.__table_handler__(module_name)
 
         old_table = 'sale_pos_device_account_statement_journal'
         if backend.TableHandler.table_exist(old_table):
