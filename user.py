@@ -1,7 +1,6 @@
 # This file is part of the sale_payment module for Tryton.
 # The COPYRIGHT file at the top level of this repository contains the full
 # copyright notices and license terms.
-from trytond import backend
 from trytond.model import fields
 from trytond.pool import PoolMeta
 from trytond.pyson import Eval
@@ -22,7 +21,7 @@ class User(metaclass=PoolMeta):
 
     @classmethod
     def __register__(cls, module_name):
-        table = backend.TableHandler(cls, module_name)
+        table = cls.__table_handler__(module_name)
 
         # Migrate from sale_pos 3.0
         old_column = 'pos_device'
