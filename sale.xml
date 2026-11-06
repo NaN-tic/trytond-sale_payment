@@ -25,6 +25,14 @@ copyright notices and license terms. -->
             <field name="name">Pay</field>
             <field name="wiz_name">sale.payment</field>
         </record>
+        <record model="ir.action-res.group" id="sale_payment_group_sale">
+            <field name="action" ref="wizard_sale_payment"/>
+            <field name="group" ref="sale.group_sale"/>
+        </record>
+        <record model="ir.action-res.group" id="sale_payment_group_sale_admin">
+            <field name="action" ref="wizard_sale_payment"/>
+            <field name="group" ref="sale.group_sale_admin"/>
+        </record>
         <record model="ir.ui.view" id="sale_payment_view_form">
             <field name="model">sale.payment.form</field>
             <field name="type">form</field>
