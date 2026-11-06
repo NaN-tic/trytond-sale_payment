@@ -70,6 +70,18 @@ copyright notices and license terms. -->
             <field name="name">Open Statements</field>
             <field name="wiz_name">open.statement</field>
         </record>
+        <record model="ir.action-res.group" id="open_statement_group_sale">
+            <field name="action" ref="wizard_open_statement"/>
+            <field name="group" ref="sale.group_sale"/>
+        </record>
+        <record model="ir.action-res.group" id="open_statement_group_sale_admin">
+            <field name="action" ref="wizard_open_statement"/>
+            <field name="group" ref="sale.group_sale_admin"/>
+        </record>
+        <record model="ir.action-res.group" id="open_statement_group_statement">
+            <field name="action" ref="wizard_open_statement"/>
+            <field name="group" ref="account_statement.group_statement"/>
+        </record>
         <menuitem parent="menu_sale_statement"
             action="wizard_open_statement" id="menu_open_statement"/>
         <record model="ir.ui.menu-res.group" id="menu_open_statement_group">
@@ -90,6 +102,18 @@ copyright notices and license terms. -->
         <record model="ir.action.wizard" id="wizard_close_statement">
             <field name="name">Close Statements</field>
             <field name="wiz_name">close.statement</field>
+        </record>
+        <record model="ir.action-res.group" id="close_statement_group_account">
+            <field name="action" ref="wizard_close_statement"/>
+            <field name="group" ref="account.group_account"/>
+        </record>
+        <record model="ir.action-res.group" id="close_statement_group_account_admin">
+            <field name="action" ref="wizard_close_statement"/>
+            <field name="group" ref="account.group_account_admin"/>
+        </record>
+        <record model="ir.action-res.group" id="close_statement_group_statement">
+            <field name="action" ref="wizard_close_statement"/>
+            <field name="group" ref="account_statement.group_statement"/>
         </record>
         <menuitem parent="menu_sale_statement"
             action="wizard_close_statement" id="menu_close_statement"/>
